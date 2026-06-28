@@ -1,0 +1,35 @@
+.card{
+    background:white;
+    padding:25px;
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.card h2{
+    margin-bottom:20px;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+    border-bottom:1px solid #eef2f7;
+}
+
+.item:last-child{
+    border:none;
+}
+
+.item h4{
+    margin-bottom:6px;
+}
+
+.item p{
+    color:#64748b;
+}
+
+.item span{
+    color:#6C4CF1;
+    font-weight:600;
+}

@@ -1,0 +1,37 @@
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(108,76,241,.15);
+}
+
+.icon{
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:28px;
+}
+
+.card h2{
+    font-size:34px;
+    color:#0f172a;
+    margin-bottom:5px;
+}
+
+.card p{
+    color:#64748b;
+    font-size:15px;
+}

@@ -1,0 +1,19 @@
+.card{
+    background:white;
+    padding:25px;
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+.card h2{
+    margin-bottom:20px;
+}
+
+.card ul{
+    padding-left:20px;
+}
+
+.card li{
+    margin-bottom:14px;
+    color:#475569;
+}

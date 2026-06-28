@@ -1,0 +1,23 @@
+.card{
+    margin-top:35px;
+    background:white;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h2{
+    font-size:24px;
+    color:#0f172a;
+}
+
+.header p{
+    color:#64748b;
+}

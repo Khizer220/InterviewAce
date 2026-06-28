@@ -1,0 +1,87 @@
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.topbar h2{
+    font-size:32px;
+    color:#0f172a;
+}
+
+.topbar p{
+    color:#64748b;
+    margin-top:5px;
+}
+
+.actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.searchBox{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:white;
+    padding:12px 18px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.searchBox input{
+    border:none;
+    outline:none;
+    width:220px;
+}
+
+.iconButton{
+    width:46px;
+    height:46px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.iconButton:hover{
+    background:#6C4CF1;
+    color:white;
+}
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:white;
+    padding:8px 14px;
+    border-radius:14px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.avatar{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#6C4CF1;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:700;
+    font-size:18px;
+}
+
+.profile h4{
+    margin:0;
+    color:#0f172a;
+}
+
+.profile span{
+    color:#64748b;
+    font-size:14px;
+}
