@@ -1,0 +1,128 @@
+.intro-page{
+    display:flex;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+.intro-card{
+    width:100%;
+    max-width:1000px;
+    background:#fff;
+    border-radius:24px;
+    padding:40px;
+    border:1px solid #eef2ff;
+    box-shadow:0 15px 40px rgba(15,23,42,.08);
+}
+
+.intro-badge{
+    display:inline-block;
+    background:#eef2ff;
+    color:#4f46e5;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.intro-top h1{
+    margin:18px 0 10px;
+    font-size:38px;
+    color:#111827;
+}
+
+.intro-top p{
+    color:#64748b;
+    line-height:1.8;
+}
+
+.intro-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin:40px 0;
+}
+
+.intro-stat{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:20px;
+}
+
+.intro-stat h4{
+    margin:0;
+    color:#64748b;
+}
+
+.intro-stat span{
+    display:block;
+    margin-top:10px;
+    font-size:22px;
+    font-weight:700;
+    color:#111827;
+}
+
+.instruction-box{
+    background:#f9fbff;
+    border:1px solid #eef2ff;
+    border-radius:20px;
+    padding:28px;
+}
+
+.instruction-box h2{
+    margin-top:0;
+}
+
+.instruction-box ul{
+    margin:20px 0 0;
+    padding-left:20px;
+}
+
+.instruction-box li{
+    margin-bottom:14px;
+    color:#475569;
+    line-height:1.7;
+}
+
+.start-interview-btn{
+    margin-top:35px;
+    width:100%;
+    border:none;
+    cursor:pointer;
+    padding:18px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#6366f1,#4f46e5);
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.start-interview-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(79,70,229,.25);
+}
+
+@media(max-width:900px){
+
+    .intro-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .intro-card{
+        padding:25px;
+    }
+
+    .intro-stats{
+        grid-template-columns:1fr;
+    }
+
+    .intro-top h1{
+        font-size:30px;
+    }
+
+}

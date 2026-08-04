@@ -1,0 +1,43 @@
+.available-section{
+    margin-top:40px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.section-header h2{
+    margin:0;
+    font-size:28px;
+    color:#111827;
+}
+
+.section-header p{
+    margin-top:8px;
+    color:#64748b;
+}
+
+.interview-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+    gap:24px;
+}
+
+.empty-box{
+    background:white;
+    border-radius:20px;
+    padding:60px;
+    text-align:center;
+    border:1px solid #eef2ff;
+}
+
+.empty-box h3{
+    color:#111827;
+}
+
+.empty-box p{
+    color:#64748b;
+}

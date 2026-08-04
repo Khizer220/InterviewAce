@@ -1,0 +1,45 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* =========================
+   Bottom Layout
+========================= */
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.left,
+.center,
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   Footer
+========================= */
+
+.footer {
+  margin-top: 10px;
+  text-align: center;
+  color: #94A3B8;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 1200px) {
+  .bottomGrid {
+    grid-template-columns: 1fr;
+  }
+}

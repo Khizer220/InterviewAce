@@ -1,0 +1,28 @@
+.layout{
+    display:flex;
+    min-height:100vh;
+    background:#f8fafc;
+}
+
+.main{
+    flex:1;
+    margin-left:260px;
+
+    /* Reduced horizontal gap */
+    padding:22px 26px 30px 22px;
+
+    transition:all .3s ease;
+}
+
+@media (max-width:1200px){
+    .main{
+        padding:20px;
+    }
+}
+
+@media (max-width:768px){
+    .main{
+        margin-left:0;
+        padding:18px;
+    }
+}

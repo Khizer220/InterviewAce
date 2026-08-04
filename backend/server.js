@@ -1,11 +1,18 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
 
-// Load environment variables
-dotenv.config();
+const connectDB = require("./config/db");
+
+const authRoutes = require("./routes/authRoutes");
+const interviewAttemptRoutes = require("./routes/interviewAttemptRoutes");
+const interviewCategoryRoutes = require("./routes/interviewCategoryRoutes");
+const questionRoutes = require("./routes/questionRoutes");
+const interviewTemplateRoutes = require("./routes/interviewTemplateRoutes");
+const aiRoutes = require("./routes/aiRoutes");
+
 
 // Connect to MongoDB
 connectDB();
@@ -16,6 +23,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/categories", interviewCategoryRoutes);
+app.use("/api/questions", questionRoutes);
+app.use("/api/interview-templates", interviewTemplateRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/interview-attempts", interviewAttemptRoutes);
 
 // Root Route
 app.get("/", (req, res) => {

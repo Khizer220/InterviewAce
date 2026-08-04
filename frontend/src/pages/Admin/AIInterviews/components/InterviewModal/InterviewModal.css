@@ -1,0 +1,266 @@
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.55);
+    backdrop-filter:blur(6px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:30px;
+}
+
+.interview-modal{
+    width:95%;
+    max-width:1280px;
+    height:88vh;
+    background:#fff;
+    border-radius:24px;
+    box-shadow:0 25px 60px rgba(15,23,42,.15);
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.modal-body{
+    flex:1;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    padding:30px;
+    overflow-y:auto;
+}
+.interview-form,
+.question-selector{
+    display:flex;
+    flex-direction:column;
+}
+
+.question-selector{
+    background:#fbfcff;
+    border:1px solid #e8ecff;
+    border-radius:18px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.form-group label{
+    font-size:14px;
+    font-weight:600;
+    color:#374151;
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    border:1px solid #d9e2f2;
+    border-radius:12px;
+    padding:13px 15px;
+    font-size:15px;
+    transition:.25s;
+    background:#fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#4f46e5;
+    outline:none;
+    box-shadow:0 0 0 4px rgba(79,70,229,.12);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.question-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.question-search{
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #d9e2f2;
+    border-radius:12px;
+    margin-bottom:18px;
+}
+
+.question-list{
+    flex:1;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.question-item{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+    padding:16px;
+    border:1px solid #e7ecff;
+    border-radius:16px;
+    transition:.25s;
+    cursor:pointer;
+    background:white;
+}
+.question-item:hover{
+    background:#f8f9ff;
+    border-color:#4f46e5;
+}
+
+.modal-footer{
+    padding:20px 30px;
+    border-top:1px solid #edf1ff;
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+}
+
+.cancel-btn{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.save-btn{
+    background:#4f46e5;
+    color:#fff;
+}
+
+.cancel-btn,
+.save-btn{
+    border:none;
+    border-radius:12px;
+    padding:12px 24px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.cancel-btn:hover{
+    background:#dbe4ff;
+}
+
+.save-btn:hover{
+    background:#4338ca;
+}
+
+/* ===========================
+   MODAL HEADER
+=========================== */
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:26px 30px;
+    border-bottom:1px solid #edf2ff;
+    background:linear-gradient(135deg,#ffffff,#f8faff);
+}
+
+.modal-header-content{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.modal-icon{
+    width:64px;
+    height:64px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#6366f1,#4f46e5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    color:#fff;
+    box-shadow:0 10px 25px rgba(79,70,229,.25);
+}
+
+.modal-title h2{
+    margin:0;
+    font-size:30px;
+    font-weight:700;
+    color:#111827;
+}
+
+.modal-title p{
+    margin-top:6px;
+    color:#64748b;
+    font-size:15px;
+}
+
+.close-btn{
+    width:44px;
+    height:44px;
+    border:none;
+    border-radius:50%;
+    background:#eef2ff;
+    color:#4f46e5;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.close-btn:hover{
+    background:#4f46e5;
+    color:#fff;
+    transform:rotate(90deg);
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
+.no-question{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#94a3b8;
+    font-size:15px;
+    font-weight:500;
+}
+
+.interview-modal{
+    animation:modalOpen .25s ease;
+}
+
+@keyframes modalOpen{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}

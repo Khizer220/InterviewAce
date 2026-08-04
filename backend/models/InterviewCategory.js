@@ -20,7 +20,23 @@ const interviewCategorySchema = new mongoose.Schema(
       default: "",
     },
 
-    isActive: {
+    difficulty: {
+      type: String,
+      enum: ["Beginner", "Intermediate", "Advanced"],
+      default: "Beginner",
+    },
+
+    duration: {
+      type: Number,
+      default: 30,
+    },
+
+    totalQuestions: {
+      type: Number,
+      default: 10,
+    },
+
+    status: {
       type: Boolean,
       default: true,
     },

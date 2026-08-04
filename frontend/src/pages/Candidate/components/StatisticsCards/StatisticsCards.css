@@ -1,0 +1,60 @@
+.candidate-stats-grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 35px 0;
+}
+
+.candidate-stats-card{
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  border: 1px solid #eef2ff;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  transition: .3s;
+}
+
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 35px rgba(15, 23, 42, .1);
+}
+
+.candidate-stats-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.candidate-stats-content h4 {
+  margin: 0;
+  color: #64748B;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.candidate-stats-content h2 {
+  margin-top: 8px;
+  font-size: 34px;
+  color: #111827;
+}
+
+@media (max-width:1200px) {
+  .stats-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media (max-width:700px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

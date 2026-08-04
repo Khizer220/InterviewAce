@@ -1,0 +1,225 @@
+.dashboard{
+    display:flex;
+    background:#F8FAFC;
+    min-height:100vh;
+}
+
+.main{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:35px;
+}
+
+/* ===========================
+   STATS GRID
+=========================== */
+
+.statsGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+    margin:28px 0;
+}
+
+@media(max-width:1200px){
+    .statsGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:768px){
+    .statsGrid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+
+.searchWrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:25px 0;
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+.table{
+    width:100%;
+    margin-top:20px;
+
+    background:#fff;
+
+    border-collapse:separate;
+    border-spacing:0;
+
+    border-radius:18px;
+    overflow:hidden;
+
+    box-shadow:0 10px 25px rgba(15,23,42,.06);
+}
+
+.table thead{
+    background:#F8FAFC;
+}
+
+.table th{
+    padding:18px 22px;
+    text-align:left;
+
+    text-transform:uppercase;
+    letter-spacing:.8px;
+
+    font-size:12px;
+    font-weight:700;
+
+    color:#64748B;
+
+    border-bottom:1px solid #E5E7EB;
+}
+
+.table td{
+    padding:20px 22px;
+    color:#111827;
+    border-bottom:1px solid #F1F5F9;
+}
+
+.table tbody tr{
+    transition:.25s;
+}
+
+.table tbody tr:hover{
+    background:#FAFAFF;
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:6px 14px;
+
+    background:#DCFCE7;
+    color:#15803D;
+
+    border-radius:999px;
+
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ===========================
+   ACTIONS
+=========================== */
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.editBtn,
+.deleteBtn{
+    width:40px;
+    height:40px;
+
+    border:none;
+    border-radius:12px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.editBtn{
+    background:#DBEAFE;
+    color:#2563EB;
+}
+
+.editBtn:hover{
+    background:#2563EB;
+    color:#fff;
+}
+
+.deleteBtn{
+    background:#FEE2E2;
+    color:#DC2626;
+}
+
+.deleteBtn:hover{
+    background:#DC2626;
+    color:#fff;
+}
+
+/* ===========================
+   LEGACY FORM
+=========================== */
+
+.form{
+    display:grid;
+    grid-template-columns:1fr 2fr auto;
+    gap:15px;
+    margin:30px 0;
+}
+
+.form input{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #D1D5DB;
+}
+
+.form button{
+    background:#6C4CF1;
+    color:#fff;
+    border:none;
+    padding:14px 24px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+.tableContainer{
+    margin-top:24px;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid #EEF2F7;
+    box-shadow:0 10px 25px rgba(15,23,42,.05);
+}
+
+.tableToolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 22px;
+    border-bottom:1px solid #EEF2F7;
+    background:#FCFCFD;
+}
+
+.recordCount{
+    font-size:14px;
+    font-weight:600;
+    color:#64748B;
+}
+
+.table{
+    margin-top:0;
+    box-shadow:none;
+    border-radius:0;
+}

@@ -1,0 +1,90 @@
+.candidate-dashboard-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+    background:#fff;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+.header-left h1{
+    margin:10px 0;
+    font-size:38px;
+    font-weight:700;
+    color:#111827;
+}
+
+.header-left p{
+    color:#64748b;
+    font-size:16px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+.welcome-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eef2ff;
+    color:#4f46e5;
+    padding:8px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+}
+
+.header-right{
+    display:flex;
+    gap:15px;
+}
+
+.resume-btn,
+.start-btn{
+    border:none;
+    cursor:pointer;
+    padding:14px 26px;
+    border-radius:14px;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.resume-btn{
+    background:#eef2ff;
+    color:#4f46e5;
+}
+
+.resume-btn:hover{
+    background:#ddd6fe;
+}
+
+.start-btn{
+    background:linear-gradient(135deg,#6366f1,#4f46e5);
+    color:#fff;
+}
+
+.start-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 25px rgba(79,70,229,.25);
+}
+
+@media(max-width:900px){
+
+    .candidate-dashboard-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:25px;
+    }
+
+    .header-right{
+        width:100%;
+    }
+
+    .resume-btn,
+    .start-btn{
+        flex:1;
+    }
+
+}
