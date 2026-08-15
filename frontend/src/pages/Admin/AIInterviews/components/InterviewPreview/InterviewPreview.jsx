@@ -2,10 +2,9 @@ import "./InterviewPreview.css";
 
 const InterviewPreview = ({
   interview,
-  isOpen,
   onClose,
 }) => {
-  if (!isOpen || !interview) return null;
+  if (!interview) return null;
 
   return (
     <div className="preview-overlay">

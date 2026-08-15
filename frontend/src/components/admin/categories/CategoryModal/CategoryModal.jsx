@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import styles from "./CategoryModal.module.css";
 
 const CategoryModal = ({
-  isOpen,
+  category = null,
   onClose,
   onSave,
-  initialData = null,
 }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,9 +15,18 @@ const CategoryModal = ({
     totalQuestions: 10,
   });
 
+  const isEdit = !!category;
+
   useEffect(() => {
-    if (initialData) {
-      setFormData(initialData);
+    if (category) {
+      setFormData({
+        name: category.name || "",
+        description: category.description || "",
+        icon: category.icon || "",
+        difficulty: category.difficulty || "Beginner",
+        duration: category.duration || 30,
+        totalQuestions: category.totalQuestions || 10,
+      });
     } else {
       setFormData({
         name: "",
@@ -29,79 +37,179 @@ const CategoryModal = ({
         totalQuestions: 10,
       });
     }
-  }, [initialData]);
+  }, [category]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formData);
-  };
 
-  if (!isOpen) return null;
+    onSave({
+      ...formData,
+      duration: Number(formData.duration),
+      totalQuestions: Number(formData.totalQuestions),
+    });
+  };
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
 
-        <div className={styles.header}>
-          <h2>
-            {initialData ? "Edit Category" : "Add Category"}
-          </h2>
+        {/* ================= HEADER ================= */}
 
-          <button onClick={onClose}>✕</button>
+        <div className={styles.header}>
+          <div>
+            <h2>
+              {isEdit ? "Edit Category" : "Add Category"}
+            </h2>
+
+            <p>
+              {isEdit
+                ? "Update category information."
+                : "Create a new interview category."}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className={styles.close}
+            onClick={onClose}
+          >
+            ✕
+          </button>
         </div>
+
+        {/* ================= FORM ================= */}
 
         <form onSubmit={handleSubmit}>
 
-          <input
-            name="name"
-            placeholder="Category Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          {/* NAME */}
 
-          <textarea
-            name="description"
-            placeholder="Description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
+          <div className={styles.field}>
+            <label>
+              Category Name
+            </label>
 
-          <select
-            name="difficulty"
-            value={formData.difficulty}
-            onChange={handleChange}
-          >
-            <option>Beginner</option>
-            <option>Intermediate</option>
-            <option>Advanced</option>
-          </select>
+            <input
+              type="text"
+              name="name"
+              placeholder="e.g. React Development"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            type="number"
-            name="duration"
-            placeholder="Duration (minutes)"
-            value={formData.duration}
-            onChange={handleChange}
-          />
+          {/* DESCRIPTION */}
 
-          <input
-            type="number"
-            name="totalQuestions"
-            placeholder="Total Questions"
-            value={formData.totalQuestions}
-            onChange={handleChange}
-          />
+          <div className={styles.field}>
+            <label>
+              Description
+            </label>
+
+            <textarea
+              name="description"
+              placeholder="Describe this interview category..."
+              value={formData.description}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+          </div>
+
+          {/* ICON */}
+
+          <div className={styles.field}>
+            <label>
+              Icon
+            </label>
+
+            <input
+              type="text"
+              name="icon"
+              placeholder="e.g. react, javascript, python"
+              value={formData.icon}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* ROW */}
+
+          <div className={styles.row}>
+
+            {/* DIFFICULTY */}
+
+            <div className={styles.field}>
+              <label>
+                Difficulty
+              </label>
+
+              <select
+                name="difficulty"
+                value={formData.difficulty}
+                onChange={handleChange}
+              >
+                <option value="Beginner">
+                  Beginner
+                </option>
+
+                <option value="Intermediate">
+                  Intermediate
+                </option>
+
+                <option value="Advanced">
+                  Advanced
+                </option>
+              </select>
+            </div>
+
+            {/* DURATION */}
+
+            <div className={styles.field}>
+              <label>
+                Duration (Minutes)
+              </label>
+
+              <input
+                type="number"
+                name="duration"
+                min="1"
+                value={formData.duration}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+          </div>
+
+          {/* QUESTIONS */}
+
+          <div className={styles.field}>
+            <label>
+              Total Questions
+            </label>
+
+            <input
+              type="number"
+              name="totalQuestions"
+              min="1"
+              value={formData.totalQuestions}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          {/* ================= ACTIONS ================= */}
 
           <div className={styles.actions}>
+
             <button
               type="button"
               className={styles.cancel}
@@ -114,8 +222,11 @@ const CategoryModal = ({
               type="submit"
               className={styles.save}
             >
-              Save
+              {isEdit
+                ? "Update Category"
+                : "Save Category"}
             </button>
+
           </div>
 
         </form>

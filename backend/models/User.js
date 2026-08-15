@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
+    // ======================================
+    // BASIC INFORMATION
+    // ======================================
+
     fullName: {
       type: String,
       required: [true, "Full name is required"],
@@ -24,16 +28,62 @@ const userSchema = new mongoose.Schema(
       minlength: [6, "Password must be at least 6 characters"],
     },
 
+    // ======================================
+    // ROLE
+    // ======================================
+
     role: {
       type: String,
       enum: ["candidate", "admin"],
       default: "candidate",
     },
 
+    // ======================================
+    // PROFILE
+    // ======================================
+
     profileImage: {
       type: String,
       default: "",
     },
+
+    // ======================================
+    // TECHNOLOGY STACK
+    // ======================================
+
+    stack: {
+      type: [String],
+      default: [],
+    },
+
+    // ======================================
+    // INTERVIEW PREPARATION PROGRESS
+    // ======================================
+
+    progress: {
+      completed: {
+        type: Number,
+        default: 0,
+        min: 0,
+      },
+
+      total: {
+        type: Number,
+        default: 0,
+        min: 0,
+      },
+
+      percentage: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 100,
+      },
+    },
+
+    // ======================================
+    // ACCOUNT STATUS
+    // ======================================
 
     isActive: {
       type: Boolean,
@@ -43,6 +93,25 @@ const userSchema = new mongoose.Schema(
     isVerified: {
       type: Boolean,
       default: false,
+    },
+
+    isApproved: {
+      type: Boolean,
+      default: false,
+    },
+
+    // ======================================
+    // ACTIVITY TRACKING
+    // ======================================
+
+    lastLogin: {
+      type: Date,
+      default: null,
+    },
+
+    lastActive: {
+      type: Date,
+      default: null,
     },
   },
   {

@@ -1,147 +1,1237 @@
-.statsGrid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    margin:28px 0;
+/* =========================================================
+   INTERVIEW QUESTIONS PAGE
+========================================================= */
+
+.iqPage {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px 32px 50px;
+  box-sizing: border-box;
+  background: #f8fafc;
+  color: #0f172a;
 }
 
-@media(max-width:1200px){
-    .statsGrid{
-        grid-template-columns:repeat(2,1fr);
-    }
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.iqHeader {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 26px;
 }
 
-@media(max-width:768px){
-    .statsGrid{
-        grid-template-columns:1fr;
-    }
+.iqHeader h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-.toolbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    margin-bottom:25px;
+.iqHeader p {
+  margin: 7px 0 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #64748b;
 }
 
-.count{
-    font-size:14px;
-    font-weight:600;
-    color:#64748B;
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.iqPrimaryButton {
+  height: 44px;
+  padding: 0 20px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #6c4cf1;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(108, 76, 241, 0.22);
+
+  transition: 0.2s ease;
 }
 
-.questionGrid{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+.iqPrimaryButton:hover {
+  background: #5b3ee0;
+  transform: translateY(-1px);
 }
 
-.card{
-    background:#fff;
-    border:1px solid #EEF2F7;
-    border-radius:18px;
-    padding:24px;
-    box-shadow:0 10px 25px rgba(15,23,42,.05);
-    transition:.25s;
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.iqStatsGrid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  margin-bottom: 24px;
 }
 
-.card:hover{
-    transform:translateY(-3px);
-    box-shadow:0 18px 35px rgba(15,23,42,.08);
+.iqStatCard {
+  min-height: 92px;
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #e8edf4;
+  border-radius: 14px;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.04);
+
+  box-sizing: border-box;
 }
 
-.cardHeader{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:20px;
+.iqStatIcon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  font-size: 20px;
 }
 
-.cardHeader h3{
-    margin:0;
-    font-size:19px;
-    color:#111827;
-    line-height:1.5;
-    flex:1;
+.iqStatIcon.purple {
+  background: #eee9ff;
+  color: #6c4cf1;
 }
 
-.badges{
-    display:flex;
-    gap:12px;
-    margin-top:18px;
-    flex-wrap:wrap;
+.iqStatIcon.green {
+  background: #dff8ed;
+  color: #10b981;
 }
 
-.categoryBadge,
-.difficultyBadge,
-.marksBadge{
-    padding:8px 14px;
-    border-radius:999px;
-    font-size:13px;
-    font-weight:600;
+.iqStatIcon.orange {
+  background: #fff0d5;
+  color: #f59e0b;
 }
 
-.categoryBadge{
-    background:#EDE9FE;
-    color:#6D28D9;
+.iqStatIcon.red {
+  background: #ffe4e4;
+  color: #ef4444;
 }
 
-.difficultyBadge{
-    background:#DCFCE7;
-    color:#15803D;
+.iqStatCard strong {
+  display: block;
+
+  margin: 0 0 3px;
+
+  font-size: 24px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: #0f172a;
 }
 
-.marksBadge{
-    background:#DBEAFE;
-    color:#2563EB;
+.iqStatCard span {
+  display: block;
+
+  font-size: 13px;
+  line-height: 1.3;
+
+  color: #64748b;
 }
 
-.actions{
-    display:flex;
-    gap:10px;
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.iqSearchBox {
+  width: 100%;
+
+  margin-bottom: 18px;
+
+  padding: 13px 16px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e6ebf2;
+
+  border-radius: 12px;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
 }
 
-.editBtn,
-.deleteBtn{
-    width:42px;
-    height:42px;
-    border:none;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    transition:.25s;
-    font-size:15px;
+.iqSearchBox input {
+  width: 100%;
+  max-width: 420px;
+
+  height: 42px;
+
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dbe2ea;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  outline: none;
+
+  font-size: 14px;
 }
 
-.editBtn{
-    background:#DBEAFE;
-    color:#2563EB;
+.iqSearchBox input::placeholder {
+  color: #94a3b8;
 }
 
-.editBtn:hover{
-    background:#2563EB;
-    color:#fff;
+.iqSearchBox input:focus {
+  border-color: #8b72f4;
+
+  box-shadow: 0 0 0 3px rgba(108, 76, 241, 0.08);
 }
 
-.deleteBtn{
-    background:#FEE2E2;
-    color:#DC2626;
+
+/* =========================================================
+   CATEGORY LIST
+========================================================= */
+
+.iqCategoryList {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
 }
 
-.deleteBtn:hover{
-    background:#DC2626;
-    color:#fff;
+
+/* =========================================================
+   CATEGORY CARD
+========================================================= */
+
+.iqCategoryCard {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e6ebf2;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.035);
+
+  box-sizing: border-box;
 }
 
-.empty{
-    background:#fff;
-    border:1px dashed #CBD5E1;
-    border-radius:18px;
-    padding:60px;
-    text-align:center;
-    color:#94A3B8;
-    font-size:18px;
+.iqCategoryExpanded {
+  box-shadow: 0 7px 22px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   CATEGORY HEADER
+========================================================= */
+
+.iqCategoryHeader {
+  width: 100%;
+
+  min-height: 92px;
+
+  padding: 18px 20px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.iqCategoryInfo {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.iqCategoryIcon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eee9ff;
+
+  color: #6c4cf1;
+
+  font-size: 19px;
+  font-weight: 800;
+
+  border: 1px solid #e2dbff;
+}
+
+.iqCategoryTitleRow {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.iqCategoryTitleRow h2 {
+  margin: 0;
+
+  font-size: 19px;
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  color: #0f172a;
+}
+
+.iqCategoryTitleRow span {
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  background: #f0ecff;
+  color: #5b3ee0;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.iqCategoryInfo p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+  line-height: 1.4;
+
+  color: #64748b;
+}
+
+
+/* =========================================================
+   CATEGORY CONTROLS
+========================================================= */
+
+.iqCategoryControls {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.iqAddButton {
+  height: 38px;
+
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  background: #ffffff;
+
+  color: #6c4cf1;
+
+  border: 1px solid #b9a8ff;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.iqAddButton:hover {
+  background: #f5f2ff;
+  border-color: #6c4cf1;
+}
+
+.iqExpandButton {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f8f6ff;
+
+  color: #5b3ee0;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: 0.2s ease;
+}
+
+.iqExpandButton:hover {
+  background: #eee9ff;
+}
+
+
+/* =========================================================
+   CATEGORY CONTENT
+========================================================= */
+
+.iqCategoryContent {
+  padding: 0 16px 18px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.iqTableWrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid #e7ebf1;
+
+  border-radius: 12px;
+}
+
+.iqTable {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  background: #ffffff;
+}
+
+.iqTable thead {
+  background: #fafbfc;
+}
+
+.iqTable th {
+  height: 48px;
+
+  padding: 0 16px;
+
+  text-align: left;
+
+  border-bottom: 1px solid #e6ebf1;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+}
+
+.iqTable th:first-child {
+  width: 68%;
+}
+
+.iqTable th:nth-child(2) {
+  width: 13%;
+}
+
+.iqTable th:nth-child(3) {
+  width: 8%;
+}
+
+.iqTable th:nth-child(4) {
+  width: 11%;
+}
+
+.iqTable td {
+  min-height: 58px;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid #edf1f5;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  vertical-align: middle;
+}
+
+.iqTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.iqTable tbody tr {
+  transition: 0.15s ease;
+}
+
+.iqTable tbody tr:hover {
+  background: #fbfcff;
+}
+
+
+/* =========================================================
+   QUESTION TEXT
+========================================================= */
+
+.iqQuestionText {
+  font-size: 14px;
+
+  line-height: 1.5;
+
+  font-weight: 500;
+
+  color: #172033;
+}
+
+
+/* =========================================================
+   DIFFICULTY
+========================================================= */
+
+.iqDifficulty {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.iqDifficulty.beginner {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.iqDifficulty.intermediate {
+  background: #fff3d6;
+  color: #d97706;
+}
+
+.iqDifficulty.advanced {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   MARKS
+========================================================= */
+
+.iqMarks {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #334155;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.iqActions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+.iqActions button {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+
+  transition: 0.15s ease;
+}
+
+.iqViewButton {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.iqViewButton:hover {
+  background: #dbeafe;
+}
+
+.iqEditButton {
+  background: #eef2ff;
+  color: #4f46e5;
+}
+
+.iqEditButton:hover {
+  background: #e0e7ff;
+}
+
+.iqDeleteButton {
+  background: #fff0f0;
+  color: #ef4444;
+}
+
+.iqDeleteButton:hover {
+  background: #fee2e2;
+}
+
+
+/* =========================================================
+   VIEW ALL
+========================================================= */
+
+.iqViewAll {
+  margin-top: 14px;
+
+  padding: 5px 4px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border: none;
+
+  background: transparent;
+
+  color: #5b3ee0;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.iqViewAll span {
+  font-size: 19px;
+
+  transition: 0.15s ease;
+}
+
+.iqViewAll:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   EMPTY / LOADING
+========================================================= */
+
+.iqLoading,
+.iqEmpty,
+.iqNoQuestions {
+  padding: 45px 20px;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+.iqNoQuestions {
+  border: 1px dashed #dbe2ea;
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.iqFooter {
+  margin-top: 22px;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .iqStatsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 850px) {
+
+  .iqPage {
+    padding: 22px 18px 40px;
+  }
+
+  .iqHeader {
+    flex-direction: column;
+  }
+
+  .iqCategoryHeader {
+    align-items: flex-start;
+  }
+
+  .iqCategoryControls {
+    flex-direction: column;
+  }
+
+  .iqAddButton {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .iqStatsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .iqCategoryHeader {
+    flex-direction: column;
+  }
+
+  .iqCategoryControls {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .iqTable {
+    min-width: 760px;
+  }
+
+}
+/* =========================================================
+   QUESTION MODALS
+========================================================= */
+
+.iqModalOverlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  backdrop-filter: blur(5px);
+
+  box-sizing: border-box;
+}
+
+
+.iqModal {
+  width: min(700px, 100%);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 70px rgba(15, 23, 42, 0.25);
+
+  animation: iqModalOpen 0.2s ease;
+
+  box-sizing: border-box;
+}
+
+
+@keyframes iqModalOpen {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   MODAL HEADER
+========================================================= */
+
+.iqModalHeader {
+  padding: 22px 25px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-bottom: 1px solid #e9edf3;
+}
+
+
+.iqModalHeader h2 {
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  color: #0f172a;
+}
+
+
+.iqModalHeader p {
+  margin: 5px 0 0;
+
+  font-size: 13px;
+
+  color: #64748b;
+}
+
+
+.iqCloseButton {
+  width: 36px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #f1f5f9;
+
+  color: #475569;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition: 0.2s;
+}
+
+
+.iqCloseButton:hover {
+  background: #fee2e2;
+
+  color: #ef4444;
+}
+
+
+/* =========================================================
+   VIEW CONTENT
+========================================================= */
+
+.iqViewContent {
+  padding: 25px;
+}
+
+
+.iqViewQuestion {
+  padding: 18px;
+
+  background: #f8f7ff;
+
+  border: 1px solid #e7e1ff;
+
+  border-radius: 12px;
+
+  color: #111827;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+
+  font-weight: 600;
+
+  margin-bottom: 22px;
+}
+
+
+.iqDetailGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+}
+
+
+.iqDetailGrid > div {
+  padding: 14px;
+
+  border: 1px solid #e8edf3;
+
+  border-radius: 10px;
+
+  background: #fafbfc;
+}
+
+
+.iqDetailGrid label,
+.iqDetailBlock label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
+}
+
+
+.iqDetailGrid strong {
+  color: #0f172a;
+
+  font-size: 14px;
+}
+
+
+.iqDetailBlock {
+  margin-top: 16px;
+
+  padding: 16px;
+
+  border: 1px solid #e8edf3;
+
+  border-radius: 10px;
+}
+
+
+.iqDetailBlock p {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   EDIT FORM
+========================================================= */
+
+.iqForm {
+  padding: 24px 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+.iqFormGroup {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.iqFormGroup label {
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+.iqFormGroup input,
+.iqFormGroup textarea,
+.iqFormGroup select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dbe2ea;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+
+.iqFormGroup input,
+.iqFormGroup select {
+  height: 43px;
+
+  padding: 0 13px;
+}
+
+
+.iqFormGroup textarea {
+  min-height: 100px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+.iqFormGroup input:focus,
+.iqFormGroup textarea:focus,
+.iqFormGroup select:focus {
+  border-color: #6c4cf1;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(108, 76, 241, 0.08);
+}
+
+
+.iqFormRow {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 16px;
+}
+
+
+/* =========================================================
+   MODAL FOOTER
+========================================================= */
+
+.iqModalFooter {
+  padding: 17px 25px;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  border-top: 1px solid #e9edf3;
+
+  background: #fafbfc;
+
+  border-radius: 0 0 18px 18px;
+}
+
+
+.iqCancelButton {
+  height: 40px;
+
+  padding: 0 18px;
+
+  border: 1px solid #dbe2ea;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.iqCancelButton:hover {
+  background: #f8fafc;
+}
+
+
+.iqSaveButton {
+  height: 40px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #6c4cf1;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 12px
+    rgba(108, 76, 241, 0.2);
+}
+
+
+.iqSaveButton:hover {
+  background: #5b3ee0;
+}
+
+
+.iqSaveButton:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVE MODAL
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .iqModalOverlay {
+    padding: 12px;
+  }
+
+  .iqModalHeader {
+    padding: 18px;
+  }
+
+  .iqForm {
+    padding: 18px;
+  }
+
+  .iqModalFooter {
+    padding: 14px 18px;
+  }
+
+  .iqDetailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .iqFormRow {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+.iqCategoryIcon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Real category logos */
+
+.iqCategoryIcon img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
 }

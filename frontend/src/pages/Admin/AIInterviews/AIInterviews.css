@@ -1,137 +1,655 @@
-/* ===========================
-   PAGE
-=========================== */
+/* =========================================================
+   INTERVIEW CARD
+========================================================= */
 
-.ai-interviews-page{
-    width:100%;
-    max-width:100%;
-    overflow-x:hidden;
-    background:#f8faff;
-    min-height:100vh;
+.interview-card {
+  width: 100%;
+  min-width: 0;
+  height: 276px;
+
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border: 1px solid #e7ebf2;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.045);
+
+  overflow: hidden;
+
+  transition: 0.2s ease;
 }
 
-/* ===========================
-   HEADER
-=========================== */
-
-.page-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:34px;
-    background:#fff;
-    border-radius:22px;
-    padding:28px 32px;
-    box-shadow:0 10px 35px rgba(15,23,42,.06);
+.interview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
 }
 
-.page-header h1{
-    margin:0;
-    font-size:2.1rem;
-    font-weight:700;
-    color:#111827;
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.interview-card-top {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 11px;
+
+  min-height: 48px;
 }
 
-.page-header p{
-    margin-top:8px;
-    color:#64748b;
-    font-size:15px;
+.technology-icon {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+
+  background: #f3f6fb;
 }
 
-.create-btn{
-    border:none;
-    cursor:pointer;
-    padding:14px 28px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#6366f1,#4f46e5);
-    color:white;
-    font-size:15px;
-    font-weight:600;
-    transition:.3s;
-    box-shadow:0 12px 30px rgba(79,70,229,.25);
+.technology-icon img {
+  width: 30px;
+  height: 30px;
+
+  object-fit: contain;
 }
 
-.create-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 18px 35px rgba(79,70,229,.35);
+.interview-title-area {
+  flex: 1;
+  min-width: 0;
 }
 
-/* ===========================
-   GRID
-=========================== */
+.interview-title-area h3 {
+  margin: 1px 0 3px;
 
-.interview-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
-    gap:22px;
-    margin-top:30px;
-}
-/* ===========================
-   EMPTY STATE
-=========================== */
+  font-size: 16px;
+  line-height: 1.15;
 
-.empty-state{
-    background:white;
-    border-radius:22px;
-    padding:80px 40px;
-    text-align:center;
-    box-shadow:0 10px 35px rgba(15,23,42,.06);
+  font-weight: 800;
+
+  color: #111827;
 }
 
-.empty-state h2{
-    margin-bottom:12px;
-    color:#111827;
+.interview-title-area p {
+  margin: 0;
+
+  font-size: 10px;
+
+  color: #64748b;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.empty-state p{
-    color:#64748b;
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-active,
+.status-inactive {
+  flex-shrink: 0;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 700;
 }
 
-/* ===========================
+.status-active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.status-inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   TAGS
+========================================================= */
+
+.interview-tags {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  margin-top: 14px;
+}
+
+.interview-tags span {
+  height: 23px;
+
+  padding: 0 8px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  background: #fafbfc;
+
+  border: 1px solid #e1e6ee;
+
+  border-radius: 999px;
+
+  color: #334155;
+
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.interview-tags svg {
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.interview-description {
+  margin: 13px 0 0;
+
+  min-height: 40px;
+
+  color: #64748b;
+
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.interview-meta {
+  margin-top: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  color: #475569;
+
+  font-size: 10px;
+}
+
+.interview-meta span {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+
+  white-space: nowrap;
+}
+
+.interview-meta svg {
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   ACTION ROW
+========================================================= */
+
+.interview-actions {
+  display: flex !important;
+
+  align-items: center !important;
+
+  justify-content: flex-start !important;
+
+  gap: 7px !important;
+
+  width: 100%;
+
+  margin-top: 11px;
+}
+
+
+/* IMPORTANT:
+   Prevent global button CSS from making every button
+   full width.
+*/
+
+.interview-actions button {
+  flex: 0 0 auto !important;
+
+  width: auto !important;
+
+  height: 27px;
+
+  padding: 0 10px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+.interview-actions .preview-action {
+  background: #e8fbff !important;
+  color: #0891b2 !important;
+}
+
+.interview-actions .preview-action:hover {
+  background: #d7f7fc !important;
+}
+
+
+/* =========================================================
+   DUPLICATE
+========================================================= */
+
+.interview-actions .duplicate-action {
+  background: #f0e8ff !important;
+  color: #6d28d9 !important;
+}
+
+.interview-actions .duplicate-action:hover {
+  background: #e5d9ff !important;
+}
+
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+.interview-actions .edit-action {
+  background: #edf0ff !important;
+  color: #4f46e5 !important;
+}
+
+.interview-actions .edit-action:hover {
+  background: #e1e6ff !important;
+}
+
+
+/* =========================================================
+   DEACTIVATE
+========================================================= */
+
+.interview-actions .toggle-action {
+  background: #fff3df !important;
+  color: #d97706 !important;
+}
+
+.interview-actions .toggle-action:hover {
+  background: #ffebcf !important;
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.delete-action {
+  width: fit-content !important;
+
+  height: 27px;
+
+  margin-top: 7px;
+
+  padding: 0 11px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  flex: 0 0 auto !important;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #fff0f0 !important;
+
+  color: #ef4444 !important;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.delete-action:hover {
+  background: #ffe2e2 !important;
+}
+
+
+/* =========================================================
+   GRID — EXACT 5 CARD DESKTOP LAYOUT
+========================================================= */
+
+.interview-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 18px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
    RESPONSIVE
-=========================== */
+========================================================= */
 
-@media(max-width:992px){
+@media (max-width: 1400px) {
 
-    .page-header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:20px;
-    }
-
-    .create-btn{
-        width:100%;
-    }
+  .interview-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
 
 }
 
-@media(max-width:768px){
+@media (max-width: 1100px) {
 
-    .ai-interviews-page{
-        padding:20px;
-    }
-
-    .interview-grid{
-        grid-template-columns:1fr;
-    }
+  .interview-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
 
 }
 
-@media(max-width:500px){
+@media (max-width: 800px) {
 
-    .page-header{
-        padding:22px;
-    }
-
-    .page-header h1{
-        font-size:1.6rem;
-    }
+  .interview-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
 
 }
-.statistics-container{
-    margin-bottom:28px;
+
+@media (max-width: 550px) {
+
+  .interview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interview-card {
+    height: auto;
+    min-height: 276px;
+  }
+
+}
+/* =========================================================
+   AI INTERVIEW TEMPLATE GRID
+   Unique class to avoid conflicts with other card grids
+========================================================= */
+
+.ai-interviews-page .ai-template-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
 }
 
-.filter-bar{
-    margin-bottom:34px;
+
+/* =========================================================
+   CARD SIZE
+========================================================= */
+
+.ai-interviews-page .ai-template-grid .interview-card {
+  width: 100%;
+  height: 310px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.ai-interviews-page .ai-template-grid .interview-description {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  color: #475569 !important;
+
+  height: 36px;
+  min-height: 36px;
+}
+
+
+/* =========================================================
+   CARD TEXT
+========================================================= */
+
+.ai-interviews-page .ai-template-grid .interview-title-area h3 {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-title-area p {
+  font-size: 11px !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-meta {
+  font-size: 11px !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-tags span {
+  font-size: 10px !important;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+  .ai-interviews-page .ai-template-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 800px) {
+  .ai-interviews-page .ai-template-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 550px) {
+  .ai-interviews-page .ai-template-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-interviews-page .ai-template-grid .interview-card {
+    height: auto;
+    min-height: 310px;
+  }
+}
+/* =========================================================
+   CARD TEXT SIZE — FINAL
+========================================================= */
+
+.ai-interviews-page .ai-template-grid .interview-title-area h3 {
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-title-area p {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  color: #64748b !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-tags span {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+.ai-interviews-page .ai-template-grid .interview-description {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  font-weight: 600 !important;
+  color: #475569 !important;
+}
+/* =========================================================
+   CREATE INTERVIEW BUTTON
+   FORCE STYLE - AI INTERVIEWS PAGE
+========================================================= */
+
+.ai-interviews-page .ai-interviews-header .create-btn {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: auto !important;
+  min-width: 170px !important;
+  height: 42px !important;
+
+  padding: 0 20px !important;
+
+  margin: 0 !important;
+
+  border: none !important;
+  outline: none !important;
+  border-radius: 10px !important;
+
+  background: linear-gradient(
+    135deg,
+    #6c4cf1,
+    #7c3aed
+  ) !important;
+
+  color: #ffffff !important;
+
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+
+  text-align: center !important;
+  white-space: nowrap !important;
+
+  cursor: pointer !important;
+
+  box-shadow:
+    0 8px 20px rgba(108, 76, 241, 0.25) !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease !important;
+}
+
+.ai-interviews-page .ai-interviews-header .create-btn:hover {
+  background: linear-gradient(
+    135deg,
+    #5b3ee4,
+    #6d28d9
+  ) !important;
+
+  transform: translateY(-1px) !important;
+
+  box-shadow:
+    0 10px 24px rgba(108, 76, 241, 0.32) !important;
+}
+
+.ai-interviews-page .ai-interviews-header .create-btn:active {
+  transform: translateY(0) !important;
+
+  box-shadow:
+    0 5px 12px rgba(108, 76, 241, 0.22) !important;
+}
+
+.ai-interviews-page .ai-interviews-header .create-btn:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* =========================================================
+   AI INTERVIEW HEADER
+========================================================= */
+
+.ai-interviews-page .ai-interviews-header {
+  width: 100% !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+  gap: 20px !important;
+  margin: 28px 0 22px !important;
+}
+
+.ai-interviews-page .ai-interviews-title {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.ai-interviews-page .ai-interviews-title h1 {
+  margin: 0 !important;
+}
+
+.ai-interviews-page .ai-interviews-title p {
+  margin: 0 !important;
+}
+
+/* Button on the RIGHT, below the admin/topbar */
+
+.ai-interviews-page .ai-interviews-header .create-btn {
+  flex-shrink: 0 !important;
+  min-width: 170px !important;
+  height: 42px !important;
+  margin-top: 0 !important;
 }

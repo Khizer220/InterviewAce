@@ -1,0 +1,90 @@
+.candidate-reports-section{
+    background:#ffffff;
+    border:1px solid #edf2f7;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 12px 35px rgba(15,23,42,.05);
+}
+
+.candidate-reports-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:28px;
+}
+
+.candidate-report-left-header h2{
+    margin:8px 0 8px;
+    font-size:28px;
+    font-weight:700;
+    color:#111827;
+}
+
+.candidate-report-left-header p{
+    color:#6b7280;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.candidate-report-label{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#f3efff;
+    color:#6D5DFC;
+    font-size:12px;
+    font-weight:600;
+}
+
+.candidate-report-viewall{
+    height:46px;
+    padding:0 18px;
+    border:none;
+    border-radius:12px;
+    background:#6D5DFC;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.candidate-report-viewall:hover{
+    background:#5948ec;
+}
+
+.candidate-report-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.candidate-report-empty{
+    height:260px;
+    border:2px dashed #eceff5;
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#6b7280;
+    background:#fafafa;
+    font-size:15px;
+}
+
+@media(max-width:768px){
+
+.candidate-reports-header{
+    flex-direction:column;
+    gap:20px;
+}
+
+.candidate-report-viewall{
+    width:100%;
+    justify-content:center;
+}
+
+}

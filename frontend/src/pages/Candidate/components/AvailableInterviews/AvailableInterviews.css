@@ -1,43 +1,106 @@
-.available-section{
-    margin-top:40px;
+.available-wrapper{
+    background:#fff;
+    border:1px solid #edf2f7;
+    border-radius:26px;
+    padding:28px;
+    box-shadow:0 10px 35px rgba(15,23,42,.05);
 }
 
-.section-header{
+.available-header{
     display:flex;
     justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:26px;
+}
+
+.available-left h2{
+    margin:8px 0 6px;
+    font-size:24px;
+    font-weight:700;
+    color:#111827;
+}
+
+.available-left p{
+    color:#6b7280;
+    font-size:15px;
+}
+
+.section-tag{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#f3efff;
+    color:#6D5DFC;
+    font-size:12px;
+    font-weight:600;
+}
+
+.view-all-btn{
+    border:none;
+    background:#6D5DFC;
+    color:#fff;
+    height:44px;
+    padding:0 18px;
+    border-radius:12px;
+    display:flex;
     align-items:center;
-    margin-bottom:24px;
+    gap:8px;
+    cursor:pointer;
+    font-weight:600;
 }
 
-.section-header h2{
-    margin:0;
-    font-size:28px;
-    color:#111827;
+.available-slider{
+    overflow:hidden;
 }
 
-.section-header p{
-    margin-top:8px;
-    color:#64748b;
+.available-grid{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    padding-bottom:10px;
 }
 
-.interview-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
-    gap:24px;
+.available-grid::-webkit-scrollbar{
+    display:none;
 }
 
-.empty-box{
-    background:white;
-    border-radius:20px;
-    padding:60px;
-    text-align:center;
-    border:1px solid #eef2ff;
+.available-grid .interview-card{
+    flex:0 0 calc((100% - 54px)/4);
+    max-width:calc((100% - 54px)/4);
 }
 
-.empty-box h3{
-    color:#111827;
+.slider-dots{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:18px;
 }
 
-.empty-box p{
-    color:#64748b;
+.slider-dots span{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#ddd;
+}
+
+.slider-dots span.active{
+    width:22px;
+    border-radius:999px;
+    background:#6D5DFC;
+}
+
+@media(max-width:1200px){
+    .available-grid .interview-card{
+        flex:0 0 calc((100% - 18px)/2);
+        max-width:calc((100% - 18px)/2);
+    }
+}
+
+@media(max-width:768px){
+    .available-grid .interview-card{
+        flex:0 0 100%;
+        max-width:100%;
+    }
 }

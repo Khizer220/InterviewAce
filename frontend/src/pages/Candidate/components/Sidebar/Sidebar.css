@@ -1,0 +1,142 @@
+.candidate-sidebar{
+    width:260px;
+    min-width:260px;
+    min-height:100vh;
+    background:#ffffff;
+    border-right:1px solid #edf2f7;
+    display:flex;
+    flex-direction:column;
+    padding:22px 18px;
+}
+
+/* ===========================
+   Logo
+=========================== */
+
+.sidebar-logo{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:36px;
+    padding:0 6px;
+}
+
+.logo-mark{
+    width:44px;
+    height:44px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#6D5DFC,#8876FF);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    font-weight:700;
+    flex-shrink:0;
+}
+
+.logo-text{
+    min-width:0;
+}
+
+.logo-text h2{
+    margin:0;
+    font-size:28px;
+    font-weight:800;
+    color:#111827;
+    line-height:1;
+    white-space:nowrap;
+}
+
+.logo-text span{
+    display:block;
+    margin-top:5px;
+    font-size:12px;
+    color:#6b7280;
+}
+
+/* ===========================
+   Navigation
+=========================== */
+
+.sidebar-nav{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.nav-item{
+    width:100%;
+    border:none;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    border-radius:16px;
+    cursor:pointer;
+    color:#475569;
+    font-size:15px;
+    font-weight:500;
+    transition:all .25s ease;
+}
+
+.nav-item svg{
+    width:20px;
+    font-size:18px;
+    flex-shrink:0;
+}
+
+.nav-item:hover{
+    background:#f6f7ff;
+    color:#6D5DFC;
+}
+
+.nav-item.active{
+    background:linear-gradient(135deg,#6D5DFC,#7D6BFF);
+    color:#ffffff;
+    box-shadow:0 12px 28px rgba(109,93,252,.25);
+}
+
+/* Push logout to bottom */
+
+.sidebar-spacer{
+    flex:1;
+}
+
+/* ===========================
+   Logout
+=========================== */
+
+.logout-btn{
+    width:100%;
+    border:none;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    margin-top:18px;
+    border-radius:16px;
+    cursor:pointer;
+    color:#ef4444;
+    font-size:15px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.logout-btn:hover{
+    background:#fff1f2;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media(max-width:1200px){
+
+.candidate-sidebar{
+    display:none;
+}
+
+}

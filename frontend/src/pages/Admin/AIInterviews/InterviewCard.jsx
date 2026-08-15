@@ -1,166 +1,159 @@
-import React from "react";
 import {
-  FaJava,
-  FaReact,
-  FaPython,
-  FaNodeJs,
-} from "react-icons/fa";
-import {
-  SiJavascript,
-  SiMongodb,
-} from "react-icons/si";
-import {
-  FiClock,
-  FiFolder,
-  FiFileText,
-  FiEdit2,
-  FiTrash2,
-} from "react-icons/fi";
-import "./InterviewCard.css";
-
-const getIcon = (category) => {
-  const name = category?.toLowerCase() || "";
-
-  if (name.includes("java"))
-    return <FaJava className="tech-icon java" />;
-
-  if (name.includes("react"))
-    return <FaReact className="tech-icon react" />;
-
-  if (name.includes("python"))
-    return <FaPython className="tech-icon python" />;
-
-  if (name.includes("node"))
-    return <FaNodeJs className="tech-icon node" />;
-
-  if (name.includes("javascript"))
-    return (
-      <SiJavascript className="tech-icon javascript" />
-    );
-
-  if (name.includes("mern"))
-    return <SiMongodb className="tech-icon mern" />;
-
-  return (
-    <FiFolder className="tech-icon default-icon" />
-  );
-};
+  HiOutlineClock,
+  HiOutlineDocumentText,
+  HiOutlineFolder,
+  HiOutlinePencil,
+  HiOutlineEye,
+  HiOutlineDocumentDuplicate,
+  HiOutlineTrash,
+} from "react-icons/hi2";
 
 const InterviewCard = ({
   interview,
-  onEdit,
+  technologyIcon,
   onDelete,
   onToggleStatus,
+  onEdit,
   onPreview,
   onDuplicate,
 }) => {
+  const questionCount = interview.questions?.length || 0;
+
+  const categoryName =
+    interview.category?.name || "Python Developer Interview";
+
+  const interviewType =
+    interview.interviewType || "Technical";
+
+  const difficulty =
+    interview.difficulty || "Beginner";
+
+  const duration =
+    interview.duration || 30;
+
   return (
-    <div className="premium-card">
+    <div className="interview-card">
 
-      <div className="premium-header">
+      {/* TOP */}
+      <div className="interview-card-top">
 
-        <div className="logo-box">
-          {getIcon(interview.category?.name)}
+        <div className="technology-icon">
+          {technologyIcon && (
+            <img
+              src={technologyIcon}
+              alt=""
+            />
+          )}
         </div>
 
-        <div className="title-area">
-          <h2>{interview.title}</h2>
+        <div className="interview-title-area">
+          <h3>{interview.title}</h3>
 
-          <p>
-            {interview.category?.name} Developer
-            Interview
-          </p>
+          <p>{categoryName}</p>
         </div>
 
         <span
-          className={`status-badge ${
+          className={
             interview.status
-              ? "active"
-              : "inactive"
-          }`}
+              ? "status-active"
+              : "status-inactive"
+          }
         >
-          {interview.status
-            ? "Active"
-            : "Inactive"}
+          {interview.status ? "Active" : "Inactive"}
         </span>
 
       </div>
 
-      <div className="meta-row">
-
-        <span>{interview.interviewType}</span>
-
-        <span>{interview.difficulty}</span>
+      {/* TAGS */}
+      <div className="interview-tags">
 
         <span>
-          <FiClock />
-          {interview.duration} min
+          {interviewType}
+        </span>
+
+        <span>
+          {difficulty}
+        </span>
+
+        <span>
+          <HiOutlineClock />
+          {duration} min
         </span>
 
       </div>
 
-      <p className="card-description">
+      {/* DESCRIPTION */}
+      <p className="interview-description">
         {interview.description ||
           "No description available."}
       </p>
 
-      <div className="card-footer-info">
+      {/* META */}
+      <div className="interview-meta">
 
         <span>
-          <FiFileText />
-          {interview.questions?.length || 0}
-          Questions
+          <HiOutlineDocumentText />
+          {questionCount} Questions
         </span>
 
         <span>
-          <FiFolder />
-          {interview.category?.name}
+          <HiOutlineFolder />
+          {categoryName}
         </span>
 
       </div>
 
- <div className="card-actions">
+      {/* ACTIONS */}
+      <div className="interview-actions">
 
-  <button
-    className="preview-btn"
-    onClick={() => onPreview(interview)}
-  >
-    Preview
-  </button>
+        <button
+          type="button"
+          className="preview-action"
+          onClick={onPreview}
+        >
+          <HiOutlineEye />
+          Preview
+        </button>
 
-  <button
-    className="duplicate-btn"
-    onClick={() => onDuplicate(interview)}
-  >
-    Duplicate
-  </button>
+        <button
+          type="button"
+          className="duplicate-action"
+          onClick={onDuplicate}
+        >
+          <HiOutlineDocumentDuplicate />
+          Duplicate
+        </button>
 
-  <button
-    className="edit-btn"
-    onClick={() => onEdit(interview)}
-  >
-    <FiEdit2 />
-    Edit
-  </button>
+        <button
+          type="button"
+          className="edit-action"
+          onClick={onEdit}
+        >
+          <HiOutlinePencil />
+          Edit
+        </button>
 
-  <button
-    className="status-btn"
-    onClick={() => onToggleStatus(interview)}
-  >
-    {interview.status
-      ? "Deactivate"
-      : "Activate"}
-  </button>
+        <button
+          type="button"
+          className="toggle-action"
+          onClick={onToggleStatus}
+        >
+          {interview.status
+            ? "Deactivate"
+            : "Activate"}
+        </button>
 
-  <button
-    className="delete-btn"
-    onClick={() => onDelete(interview._id)}
-  >
-    <FiTrash2 />
-    Delete
-  </button>
+      </div>
 
-</div>
+      {/* DELETE */}
+      <button
+        type="button"
+        className="delete-action"
+        onClick={onDelete}
+      >
+        <HiOutlineTrash />
+        Delete
+      </button>
 
     </div>
   );

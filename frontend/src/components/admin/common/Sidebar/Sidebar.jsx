@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
 import {
   FaHome,
   FaFolderOpen,
@@ -9,33 +10,57 @@ import {
   FaCode,
   FaRobot,
   FaFileAlt,
+  FaUserClock,
 } from "react-icons/fa";
 
 import styles from "./Sidebar.module.css";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/login");
+  };
+
   return (
     <aside className={styles.sidebar}>
-      {/* Logo */}
+
+      {/* =========================
+          Logo
+      ========================= */}
+
       <div className={styles.logo}>
-        <div className={styles.logoIcon}>IA</div>
+
+        <div className={styles.logoMark}>
+          IA
+        </div>
 
         <div>
           <h2>InterviewAce</h2>
           <p>Admin Panel</p>
         </div>
+
       </div>
 
-      {/* Main */}
+      {/* =========================
+          Main
+      ========================= */}
+
       <div className={styles.sectionTitle}>
         MAIN
       </div>
 
       <nav className={styles.menu}>
+
         <NavLink
           to="/admin/dashboard"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaHome />
@@ -45,7 +70,9 @@ const Sidebar = () => {
         <NavLink
           to="/admin/categories"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaFolderOpen />
@@ -55,87 +82,147 @@ const Sidebar = () => {
         <NavLink
           to="/admin/questions"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaQuestionCircle />
           <span>Questions</span>
         </NavLink>
+
       </nav>
 
-      {/* Management */}
+      {/* =========================
+          Management
+      ========================= */}
+
       <div className={styles.sectionTitle}>
         MANAGEMENT
       </div>
 
       <nav className={styles.menu}>
+
+        {/* Users */}
+
         <NavLink
           to="/admin/users"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaUsers />
           <span>Users</span>
         </NavLink>
 
+        {/* Pending Users */}
+
+        <NavLink
+          to="/admin/pending-users"
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
+          }
+        >
+          <FaUserClock />
+          <span>Pending Users</span>
+
+          <span className={styles.pendingBadge}>
+            Pending
+          </span>
+
+        </NavLink>
+
+        {/* Analytics */}
+
         <NavLink
           to="/admin/analytics"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaChartBar />
           <span>Analytics</span>
         </NavLink>
 
+        {/* Coding */}
+
         <NavLink
           to="/admin/coding"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaCode />
           <span>Coding</span>
         </NavLink>
 
+        {/* Mock Interviews */}
+
         <NavLink
-         to="/admin/ai-interviews"
+          to="/admin/ai-interviews"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaRobot />
           <span>Mock Interviews</span>
         </NavLink>
 
+        {/* Resume Reviews */}
+
         <NavLink
           to="/admin/resumes"
           className={({ isActive }) =>
-            isActive ? `${styles.link} ${styles.active}` : styles.link
+            isActive
+              ? `${styles.link} ${styles.active}`
+              : styles.link
           }
         >
           <FaFileAlt />
           <span>Resume Reviews</span>
         </NavLink>
+
       </nav>
 
-      {/* Bottom */}
+      {/* =========================
+          Bottom
+      ========================= */}
+
       <div className={styles.bottom}>
+
         <div className={styles.profile}>
-          <div className={styles.avatar}>N</div>
+
+          <div className={styles.avatar}>
+            N
+          </div>
 
           <div>
             <h4>Nagu</h4>
             <p>Administrator</p>
           </div>
+
         </div>
 
-        <button className={styles.logout}>
+        <button
+          className={styles.logout}
+          onClick={handleLogout}
+        >
           <FaSignOutAlt />
           Logout
         </button>
+
       </div>
+
     </aside>
   );
 };

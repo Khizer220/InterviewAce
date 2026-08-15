@@ -1,166 +1,138 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { loginUser } from "../../services/authService";
+
+import LoginLeft from "./components/LoginLeft";
+import LoginRight from "./components/LoginRight";
+
 import "./Login.css";
 
 const Login = () => {
+
   const navigate = useNavigate();
 
-  const [selectedRole, setSelectedRole] =
-    useState("candidate");
+  const [selectedRole,setSelectedRole]=useState("candidate");
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+  const [formData,setFormData]=useState({
+
+    email:"",
+    password:""
+
   });
 
-  const handleChange = (e) => {
+  const handleChange=(e)=>{
+
     setFormData({
+
       ...formData,
-      [e.target.name]: e.target.value,
+
+      [e.target.name]:e.target.value
+
     });
+
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit=async(e)=>{
+
     e.preventDefault();
 
-    try {
-      const data = await loginUser(formData);
+    try{
 
-      // ===============================
-      // Role Validation
-      // ===============================
+      const data=await loginUser(formData);
 
-      if (
-        selectedRole === "admin" &&
-        data.user.role !== "admin"
-      ) {
-        alert(
-          "This account is not registered as an Administrator."
-        );
+      if(
+
+        selectedRole==="admin" &&
+
+        data.user.role!=="admin"
+
+      ){
+
+        alert("This account is not registered as Administrator.");
+
         return;
+
       }
 
-      if (
-        selectedRole === "candidate" &&
-        data.user.role !== "candidate"
-      ) {
-        alert(
-          "This account is not registered as a Candidate."
-        );
+      if(
+
+        selectedRole==="candidate" &&
+
+        data.user.role!=="candidate"
+
+      ){
+
+        alert("This account is not registered as Candidate.");
+
         return;
+
       }
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("token",data.token);
+
       localStorage.setItem(
+
         "user",
+
         JSON.stringify(data.user)
+
       );
 
-      alert("Login Successful");
+      navigate(
 
-      if (data.user.role === "admin") {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/candidate/dashboard");
-      }
+        data.user.role==="admin"
 
-    } catch (error) {
-      alert(
-        error.response?.data?.message ||
-          "Login Failed"
+        ?"/admin/dashboard"
+
+        :"/candidate/dashboard"
+
       );
+
     }
+
+    catch(err){
+
+      alert(
+
+        err.response?.data?.message ||
+
+        "Login Failed"
+
+      );
+
+    }
+
   };
 
-  return (
+  return(
+
     <div className="auth-page">
 
-      <div className="auth-card">
+      <div className="auth-container">
 
-        <h1>
-          Interview<span>Ace</span>
-        </h1>
+        <LoginLeft />
 
-        <h2>Welcome Back 👋</h2>
+        <LoginRight
 
-        <p>
-          Sign in to continue your interview preparation.
-        </p>
+          selectedRole={selectedRole}
 
-        {/* Role Selector */}
+          setSelectedRole={setSelectedRole}
 
-        <div className="role-switch">
+          formData={formData}
 
-          <button
-            type="button"
-            className={
-              selectedRole === "candidate"
-                ? "active-role"
-                : ""
-            }
-            onClick={() =>
-              setSelectedRole("candidate")
-            }
-          >
-            Candidate
-          </button>
+          handleChange={handleChange}
 
-          <button
-            type="button"
-            className={
-              selectedRole === "admin"
-                ? "active-role"
-                : ""
-            }
-            onClick={() =>
-              setSelectedRole("admin")
-            }
-          >
-            Administrator
-          </button>
+          handleSubmit={handleSubmit}
 
-        </div>
-
-        <form onSubmit={handleSubmit}>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          <button type="submit">
-            {selectedRole === "admin"
-              ? "Sign In as Administrator"
-              : "Sign In as Candidate"}
-          </button>
-
-        </form>
-
-        <div className="bottom-text">
-          Don't have an account?{" "}
-          <Link to="/register">
-            Register
-          </Link>
-        </div>
+        />
 
       </div>
 
     </div>
+
   );
+
 };
 
 export default Login;

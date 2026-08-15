@@ -1,90 +1,375 @@
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:1000;
+/* =========================================================
+   CATEGORY MODAL
+========================================================= */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(5px);
 }
 
-.modal{
-background:white;
-width:520px;
-border-radius:20px;
-padding:25px;
-box-shadow:0 20px 50px rgba(0,0,0,.2);
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.20),
+    0 8px 20px rgba(15, 23, 42, 0.08);
+
+  padding: 28px;
+
+  box-sizing: border-box;
 }
 
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 26px;
 }
 
-.header button{
-border:none;
-background:none;
-font-size:22px;
-cursor:pointer;
+.header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 800;
 }
 
-.modal form{
-display:flex;
-flex-direction:column;
-gap:15px;
+.header p {
+  margin: 6px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.5;
 }
 
-.modal input,
-.modal textarea,
-.modal select{
-padding:14px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:15px;
+.close {
+  width: 36px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -4px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: transparent;
+
+  color: #475569;
+
+  font-size: 22px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
 }
 
-.modal textarea{
-resize:none;
-height:90px;
+.close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
-.actions{
-display:flex;
-justify-content:flex-end;
-gap:12px;
-margin-top:10px;
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.modal form {
+  width: 100%;
 }
 
-.cancel{
-background:#e5e7eb;
-border:none;
-padding:12px 18px;
-border-radius:10px;
-cursor:pointer;
+
+/* =========================================================
+   FIELD
+========================================================= */
+
+.field {
+  width: 100%;
+  margin-bottom: 18px;
 }
 
-.save{
-background:#6C4CF1;
-color:white;
-border:none;
-padding:12px 18px;
-border-radius:10px;
-cursor:pointer;
+.field label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 700;
 }
 
-.addButton{
-background:#6C4CF1;
-color:white;
-border:none;
-padding:14px 22px;
-border-radius:12px;
-cursor:pointer;
-font-weight:600;
-transition:.3s;
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8dee8;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #0f172a;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.addButton:hover{
-background:#5938d8;
+.field input,
+.field select {
+  height: 44px;
+
+  padding: 0 13px;
+}
+
+.field textarea {
+  min-height: 100px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+========================================================= */
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: #6c4cf1;
+
+  box-shadow:
+    0 0 0 3px rgba(108, 76, 241, 0.12);
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   TWO COLUMN ROW
+========================================================= */
+
+.row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 16px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 26px;
+  padding-top: 20px;
+
+  border-top: 1px solid #eef2f7;
+}
+
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+.cancel {
+  height: 42px;
+
+  padding: 0 20px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #f1f5f9;
+
+  color: #334155;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.cancel:hover {
+  background: #e2e8f0;
+}
+
+
+/* =========================================================
+   SAVE / UPDATE
+========================================================= */
+
+.save {
+  height: 42px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #6c4cf1;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 5px 14px rgba(108, 76, 241, 0.22);
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.save:hover {
+  background: #5b3ee0;
+
+  box-shadow: 0 7px 18px rgba(108, 76, 241, 0.28);
+
+  transform: translateY(-1px);
+}
+
+.save:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .overlay {
+    padding: 14px;
+  }
+
+  .modal {
+    max-height: calc(100vh - 28px);
+
+    padding: 22px;
+
+    border-radius: 16px;
+  }
+
+  .header h2 {
+    font-size: 21px;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .actions {
+    justify-content: stretch;
+  }
+
+  .cancel,
+  .save {
+    flex: 1;
+  }
 }

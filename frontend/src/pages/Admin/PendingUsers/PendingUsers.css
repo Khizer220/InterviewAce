@@ -1,0 +1,781 @@
+/* =========================================================
+   INTERVIEWACE - PENDING USERS
+   DESIGN ONLY
+========================================================= */
+
+.pending-page {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+
+  padding: 34px 28px 60px;
+
+  box-sizing: border-box;
+
+  background: #f8fafc;
+
+  color: #0f172a;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.pending-header {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+.pending-header-left {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.pending-badge {
+  width: fit-content;
+
+  padding: 7px 13px;
+
+  border-radius: 8px;
+
+  background: #eeeaff;
+
+  color: #6546ef;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  line-height: 1;
+}
+
+.pending-title {
+  margin: 0;
+
+  font-size: 34px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  color: #0f172a;
+
+  letter-spacing: -0.7px;
+}
+
+.pending-description {
+  margin: 0;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+
+  color: #64748b;
+}
+
+
+/* =========================================================
+   COUNT CARD
+========================================================= */
+
+.pending-count {
+  min-width: 190px;
+
+  height: 70px;
+
+  padding: 0 18px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e9f0;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.05);
+}
+
+.pending-count-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eeeaff;
+
+  color: #6847ef;
+
+  font-size: 20px;
+}
+
+.pending-count-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.pending-count-number {
+  font-size: 25px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: #0f172a;
+}
+
+.pending-count-label {
+  font-size: 12px;
+
+  color: #64748b;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   MAIN CONTENT CARD
+========================================================= */
+
+.pending-content {
+  width: 100%;
+
+  background: #ffffff;
+
+  border: 1px solid #e3e8ef;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.045);
+}
+
+
+/* =========================================================
+   LIST HEADER
+========================================================= */
+
+.pending-list-header {
+  min-height: 78px;
+
+  padding: 0 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #e9edf2;
+
+  background: #ffffff;
+}
+
+.pending-list-title {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.pending-list-title h2 {
+  margin: 0;
+
+  font-size: 17px;
+
+  font-weight: 750;
+
+  color: #111827;
+}
+
+.pending-list-title span {
+  padding: 6px 11px;
+
+  border-radius: 999px;
+
+  background: #f0edff;
+
+  color: #6546ef;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.pending-list-status {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 13px;
+
+  border-radius: 999px;
+
+  background: #fff7e5;
+
+  color: #b76b00;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.pending-list-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #f59e0b;
+}
+
+
+/* =========================================================
+   USER LIST
+========================================================= */
+
+.pending-user-list {
+  width: 100%;
+}
+
+
+/* =========================================================
+   USER ROW
+========================================================= */
+
+.pending-user {
+  min-height: 108px;
+
+  padding: 20px 26px;
+
+  box-sizing: border-box;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(320px, 1fr)
+    150px
+    130px
+    225px;
+
+  align-items: center;
+
+  gap: 28px;
+
+  border-bottom: 1px solid #edf0f4;
+
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease;
+}
+
+.pending-user:last-child {
+  border-bottom: none;
+}
+
+.pending-user:hover {
+  background: #fcfcff;
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.user-info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.user-avatar {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eeeaff,
+      #ddd5ff
+    );
+
+  color: #6546ef;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(101, 70, 239, 0.04);
+}
+
+.user-details {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.user-name {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 15px;
+
+  font-weight: 750;
+
+  line-height: 1.3;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.user-email svg {
+  flex-shrink: 0;
+
+  font-size: 13px;
+
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   REGISTERED
+========================================================= */
+
+.registered-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.registered-label {
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  font-weight: 500;
+}
+
+.registered-date {
+  color: #334155;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.pending-status-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 8px 13px;
+
+  border-radius: 999px;
+
+  background: #fff7e6;
+
+  color: #c87900;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #f59e0b;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 10px;
+}
+
+.approve-btn,
+.reject-btn {
+  height: 42px;
+
+  padding: 0 17px;
+
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+
+/* APPROVE */
+
+.approve-btn {
+  border: 1px solid #6546ef;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6546ef,
+      #7955f4
+    );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 7px 16px
+    rgba(101, 70, 239, 0.22);
+}
+
+.approve-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 10px 22px
+    rgba(101, 70, 239, 0.30);
+}
+
+
+/* REJECT */
+
+.reject-btn {
+  border: 1px solid #e1e5eb;
+
+  background: #ffffff;
+
+  color: #ef4444;
+}
+
+.reject-btn:hover:not(:disabled) {
+  background: #fff5f5;
+
+  border-color: #fecaca;
+}
+
+
+/* DISABLED */
+
+.approve-btn:disabled,
+.reject-btn:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.pending-loading {
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  color: #6546ef;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
+
+.pending-loading svg {
+  font-size: 30px;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.pending-empty {
+  min-height: 330px;
+
+  padding: 50px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.pending-empty-icon {
+  width: 64px;
+  height: 64px;
+
+  margin-bottom: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background: #e9f9ef;
+
+  color: #16a34a;
+
+  font-size: 28px;
+}
+
+.pending-empty h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 19px;
+
+  font-weight: 750;
+}
+
+.pending-empty p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   LARGE SCREEN
+========================================================= */
+
+@media (min-width: 1500px) {
+
+  .pending-page {
+    padding: 40px 32px 60px;
+  }
+
+  .pending-title {
+    font-size: 36px;
+  }
+
+  .pending-description {
+    font-size: 15px;
+  }
+
+  .pending-user {
+    min-height: 115px;
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    grid-template-columns:
+      minmax(380px, 1fr)
+      170px
+      140px
+      240px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+  .pending-user {
+    grid-template-columns:
+      minmax(250px, 1fr)
+      130px
+      120px;
+
+    gap: 18px;
+  }
+
+  .user-actions {
+    grid-column: 1 / -1;
+
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .pending-page {
+    padding: 25px 16px 40px;
+  }
+
+  .pending-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+  .pending-title {
+    font-size: 29px;
+  }
+
+  .pending-description {
+    font-size: 14px;
+  }
+
+  .pending-count {
+    width: 190px;
+  }
+
+  .pending-list-header {
+    padding: 18px;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 12px;
+  }
+
+  .pending-user {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    padding: 22px;
+  }
+
+  .registered-info {
+    width: 100%;
+  }
+
+  .pending-status-wrapper {
+    width: 100%;
+  }
+
+  .user-actions {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .approve-btn,
+  .reject-btn {
+    width: 100%;
+  }
+
+}

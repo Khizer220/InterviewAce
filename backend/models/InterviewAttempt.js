@@ -1,92 +1,35 @@
-const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
-const interviewAttemptSchema = new mongoose.Schema(
-  {
-    candidate: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
+const protect = async (req, res, next) => {
+  try {
+    let token;
 
-    interview: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "InterviewTemplate",
-      required: true,
-    },
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer")
+    ) {
+      token = req.headers.authorization.split(" ")[1];
+    }
 
-    answers: [
-      {
-        question: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Question",
-          required: true,
-        },
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Not authorized. No token provided.",
+      });
+    }
 
-        answer: {
-          type: String,
-          default: "",
-        },
-      },
-    ],
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    totalQuestions: {
-      type: Number,
-      default: 0,
-    },
+    req.user = await User.findById(decoded.id).select("-password");
 
-    score: {
-      type: Number,
-      default: 0,
-    },
-
-    percentage: {
-      type: Number,
-      default: 0,
-    },
-
-    aiFeedback: {
-      type: String,
-      default: "",
-    },
-
-    strengths: [
-      {
-        type: String,
-      },
-    ],
-
-    improvements: [
-      {
-        type: String,
-      },
-    ],
-
-    status: {
-      type: String,
-      enum: [
-        "In Progress",
-        "Completed",
-        "Evaluated",
-      ],
-      default: "Completed",
-    },
-
-    startedAt: {
-      type: Date,
-      default: Date.now,
-    },
-
-    submittedAt: {
-      type: Date,
-      default: Date.now,
-    },
-  },
-  {
-    timestamps: true,
+    next();
+  } catch (error) {
+    return res.status(401).json({
+      success: false,
+      message: "Invalid or expired token.",
+    });
   }
-);
+};
 
-module.exports = mongoose.model(
-  "InterviewAttempt",
-  interviewAttemptSchema
-);
+module.exports = { protect };

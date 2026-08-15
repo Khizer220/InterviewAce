@@ -1,0 +1,207 @@
+.candidate-report-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+
+    padding:20px;
+
+    background:#ffffff;
+
+    border:1px solid #edf2f7;
+    border-radius:20px;
+
+    transition:.3s;
+
+    box-shadow:0 6px 20px rgba(15,23,42,.04);
+}
+
+.candidate-report-row:hover{
+    transform:translateY(-4px);
+    box-shadow:0 18px 40px rgba(15,23,42,.08);
+}
+
+.candidate-report-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex:1;
+}
+
+/* ==========================
+   Score Ring
+========================== */
+
+.candidate-mini-ring{
+    position:relative;
+    width:78px;
+    height:78px;
+    flex-shrink:0;
+}
+
+.candidate-mini-ring svg{
+    transform:rotate(-90deg);
+}
+
+.candidate-ring-bg{
+    fill:none;
+    stroke:#eceff5;
+    stroke-width:7;
+}
+
+.candidate-ring-progress{
+    fill:none;
+    stroke:#6D5DFC;
+    stroke-width:7;
+    stroke-linecap:round;
+    transition:stroke-dashoffset .8s ease;
+}
+
+.candidate-ring-value{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:16px;
+    font-weight:700;
+    color:#111827;
+}
+
+/* ==========================
+   Info
+========================== */
+
+.candidate-report-info{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.candidate-report-info h3{
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+    color:#111827;
+}
+
+.candidate-ai-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    width:max-content;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:#f3efff;
+
+    color:#6D5DFC;
+
+    font-size:11px;
+    font-weight:700;
+}
+
+.candidate-report-info p{
+    margin:0;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    color:#6b7280;
+
+    font-size:13px;
+}
+
+/* ==========================
+   Right
+========================== */
+
+.candidate-report-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:14px;
+}
+
+.candidate-score-box{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+.candidate-score-box span{
+    font-size:12px;
+    color:#9ca3af;
+}
+
+.candidate-score-box strong{
+    font-size:22px;
+    color:#111827;
+}
+
+/* ==========================
+   Button
+========================== */
+
+.candidate-report-btn{
+    border:1px solid #6D5DFC;
+
+    background:transparent;
+
+    color:#6D5DFC;
+
+    height:42px;
+
+    padding:0 18px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.candidate-report-btn:hover{
+    background:#6D5DFC;
+    color:#ffffff;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media(max-width:900px){
+
+.candidate-report-row{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.candidate-report-right{
+    width:100%;
+    align-items:stretch;
+}
+
+.candidate-score-box{
+    align-items:flex-start;
+}
+
+.candidate-report-btn{
+    width:100%;
+}
+
+}

@@ -147,3 +147,20 @@
   background: #DC2626;
   transform: translateY(-2px);
 }
+
+.pendingBadge {
+  margin-left: auto;
+
+  padding: 3px 7px;
+
+  border-radius: 999px;
+
+  background: #fff4dc;
+
+  color: #c27b00;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}

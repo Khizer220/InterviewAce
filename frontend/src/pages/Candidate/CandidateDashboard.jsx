@@ -4,9 +4,13 @@ import axios from "axios";
 
 import "./CandidateDashboard.css";
 
-import DashboardHeader from "./components/DashboardHeader/DashboardHeader";
+import Sidebar from "./components/Sidebar/Sidebar";
+import TopHeader from "./components/TopHeader/TopHeader";
 import StatisticsCards from "./components/StatisticsCards/StatisticsCards";
 import AvailableInterviews from "./components/AvailableInterviews/AvailableInterviews";
+import RecentReports from "./components/RecentReports/RecentReports";
+import ImproveSkills from "./components/ImproveSkills/ImproveSkills";
+import TrackProgress from "./components/TrackProgress/TrackProgress";
 
 const API = "http://localhost:5000/api";
 
@@ -35,38 +39,64 @@ const CandidateDashboard = () => {
       setInterviews(active);
 
     } catch (err) {
+
       console.error(err);
+
     } finally {
+
       setLoading(false);
+
     }
   };
 
   return (
-    <div className="candidate-page">
+    <div className="candidate-dashboard">
 
-      {/* =========================
-          DASHBOARD HEADER
-      ========================== */}
+      <Sidebar />
 
-      <DashboardHeader user={user} />
+      <main className="dashboard-main">
 
-      {/* =========================
-          STATISTICS
-      ========================== */}
+        <TopHeader user={user} />
 
-      <StatisticsCards interviews={interviews} />
+        <StatisticsCards interviews={interviews} />
 
-      {/* =========================
-          AVAILABLE INTERVIEWS
-      ========================== */}
+        <section className="dashboard-content">
 
-      <AvailableInterviews
-  interviews={interviews}
-  loading={loading}
-  onStartInterview={(interview) =>
-    navigate(`/candidate/mock-interview/${interview._id}`)
-  }
-/>
+          <div className="dashboard-interviews">
+
+            <AvailableInterviews
+              interviews={interviews}
+              loading={loading}
+              onStartInterview={(interview) =>
+                navigate(
+                  `/candidate/mock-interview/${interview._id}`
+                )
+              }
+            />
+
+          </div>
+
+          <div className="dashboard-reports">
+
+            <RecentReports />
+
+          </div>
+
+          <div className="dashboard-skills">
+
+            <ImproveSkills />
+
+          </div>
+
+          <div className="dashboard-progress">
+
+            <TrackProgress />
+
+          </div>
+
+        </section>
+
+      </main>
 
     </div>
   );

@@ -7,11 +7,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
+    role: "candidate",
+    adminKey: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -20,90 +24,332 @@ const Register = () => {
     });
   };
 
+  const handleRoleChange = (role) => {
+    setFormData({
+      ...formData,
+      role,
+      adminKey: "",
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.name || !formData.email || !formData.password) {
+      alert("All fields are required.");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (formData.role === "admin" && !formData.adminKey) {
+      alert("Admin registration key is required.");
       return;
     }
 
     try {
+      setLoading(true);
+
       await registerUser({
-        fullName: formData.fullName,
+        fullName: formData.name,
         email: formData.email,
         password: formData.password,
+        role: formData.role,
+        ...(formData.role === "admin" && {
+          adminKey: formData.adminKey,
+        }),
       });
 
-      alert("Registration Successful");
+      if (formData.role === "admin") {
+        alert("Admin account created successfully.");
+      } else {
+        alert(
+          "Registration successful. Your account is pending administrator approval."
+        );
+      }
+
       navigate("/login");
     } catch (error) {
-      alert(error.response?.data?.message || "Registration Failed");
+      alert(
+        error.response?.data?.message ||
+          "Registration failed."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card">
+    <div className="register-page">
 
-        <h1>
-          Interview<span>Ace</span>
-        </h1>
+      {/* Decorative background */}
+      <div className="register-orb register-orb-one"></div>
+      <div className="register-orb register-orb-two"></div>
 
-        <h2>Create Account 🚀</h2>
+      <div className="register-container">
 
-        <p>Start your interview preparation journey.</p>
+        {/* ================= LEFT SIDE ================= */}
 
-        <form onSubmit={handleSubmit}>
+        <div className="register-left">
 
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
+          <div className="register-brand">
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+            <div className="register-brand-icon">
+              ✦
+            </div>
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+            <h1>
+              Interview<span>Ace</span>
+            </h1>
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+          </div>
 
-          <button type="submit">
-            Create Account
-          </button>
+          <div className="register-hero">
 
-        </form>
+            <span className="register-tag">
+              AI Powered Platform
+            </span>
 
-        <div className="bottom-text">
-          Already have an account?{" "}
-          <Link to="/login">Login</Link>
+            <h2>
+              Start Your
+              <br />
+              Interview Journey
+            </h2>
+
+            <p>
+              Create your account and practice smarter
+              with AI-powered mock interviews, feedback,
+              and skill improvement.
+            </p>
+
+          </div>
+
+          <div className="register-highlight">
+
+            <div className="highlight-icon">
+              ✦
+            </div>
+
+            <div>
+              <h3>
+                Practice. Improve. Succeed.
+              </h3>
+
+              <p>
+                Build confidence one interview at a time.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* ================= RIGHT SIDE ================= */}
+
+        <div className="register-right">
+
+          <div className="register-card">
+
+            <div className="register-header">
+
+              <div className="register-mini-logo">
+                ✦
+              </div>
+
+              <h2>
+                Create Account
+              </h2>
+
+              <p>
+                Start your interview preparation journey.
+              </p>
+
+            </div>
+
+            <form
+              onSubmit={handleSubmit}
+              autoComplete="off"
+            >
+
+              {/* ================= ROLE ================= */}
+
+              <div className="register-role-section">
+
+                <label>
+                  Register As
+                </label>
+
+                <div className="register-role-options">
+
+                  <button
+                    type="button"
+                    className={
+                      formData.role === "candidate"
+                        ? "role-option active"
+                        : "role-option"
+                    }
+                    onClick={() =>
+                      handleRoleChange("candidate")
+                    }
+                  >
+                    <span>👤</span>
+                    Candidate
+                  </button>
+
+                  <button
+                    type="button"
+                    className={
+                      formData.role === "admin"
+                        ? "role-option active"
+                        : "role-option"
+                    }
+                    onClick={() =>
+                      handleRoleChange("admin")
+                    }
+                  >
+                    <span>🛡️</span>
+                    Admin
+                  </button>
+
+                </div>
+
+              </div>
+
+              {/* ================= NAME ================= */}
+
+              <div className="register-input-box">
+
+                <label>
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter your full name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  required
+                />
+
+              </div>
+
+              {/* ================= EMAIL ================= */}
+
+              <div className="register-input-box">
+
+                <label>
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  required
+                />
+
+              </div>
+
+              {/* ================= PASSWORD ================= */}
+
+              <div className="register-input-box">
+
+                <label>
+                  Password
+                </label>
+
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Create a password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  autoComplete="new-password"
+                  required
+                />
+
+              </div>
+
+              {/* ================= CONFIRM PASSWORD ================= */}
+
+              <div className="register-input-box">
+
+                <label>
+                  Confirm Password
+                </label>
+
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Confirm your password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  autoComplete="new-password"
+                  required
+                />
+
+              </div>
+
+              {/* ================= ADMIN KEY ================= */}
+
+              {formData.role === "admin" && (
+                <div className="register-input-box">
+
+                  <label>
+                    Admin Registration Key
+                  </label>
+
+                  <input
+                    type="password"
+                    name="adminKey"
+                    placeholder="Enter admin registration key"
+                    value={formData.adminKey}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    required
+                  />
+
+                </div>
+              )}
+
+              {/* ================= SUBMIT ================= */}
+
+              <button
+                type="submit"
+                className="register-submit"
+                disabled={loading}
+              >
+                {loading
+                  ? "Creating Account..."
+                  : "Create Account"}
+              </button>
+
+            </form>
+
+            <div className="register-login">
+
+              Already have an account?
+
+              <Link to="/login">
+                Login
+              </Link>
+
+            </div>
+
+          </div>
+
         </div>
 
       </div>
+
     </div>
   );
 };

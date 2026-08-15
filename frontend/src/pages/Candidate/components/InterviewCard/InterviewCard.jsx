@@ -1,56 +1,124 @@
 import {
-  FaBook,
-  FaClock,
-  FaLayerGroup,
   FaArrowRight,
+  FaClock,
+  FaQuestionCircle,
+  FaRobot,
 } from "react-icons/fa";
 
 import "./InterviewCard.css";
+
+const icons = {
+  HTML: "/icons/html.png",
+  CSS: "/icons/css.png",
+  JavaScript: "/icons/javascript.png",
+  React: "/icons/react.png",
+  Python: "/icons/python.png",
+  Java: "/icons/java.png",
+  "Node.js": "/icons/nodejs.png",
+};
+
+const difficultyColor = {
+  Beginner: "green",
+  Intermediate: "orange",
+  Advanced: "red",
+};
 
 const InterviewCard = ({
   interview,
   onStart,
 }) => {
+
+  const category = interview.category?.name || "General";
+
+const title = interview.title.toLowerCase();
+const categoryName = category.toLowerCase();
+
+let icon = "💼";
+
+if (title.includes("html") || categoryName.includes("html"))
+  icon = "/icons/html.png";
+
+else if (title.includes("css") || categoryName.includes("css"))
+  icon = "/icons/css.png";
+
+else if (title.includes("python") || categoryName.includes("python"))
+  icon = "/icons/python.png";
+
+else if (
+  (title.includes("java") && !title.includes("javascript")) ||
+  (categoryName.includes("java") &&
+    !categoryName.includes("javascript"))
+)
+  icon = "/icons/java.png";
+
+else if (
+  title.includes("javascript") ||
+  categoryName.includes("javascript")
+)
+  icon = "/icons/javascript.png";
+
+else if (
+  title.includes("react") ||
+  categoryName.includes("react")
+)
+  icon = "/icons/react.png";
+
+else if (
+  title.includes("node") ||
+  categoryName.includes("node")
+)
+  icon = "/icons/nodejs.png";
+
   return (
-    <div className="candidate-interview-card">
 
-      <div className="candidate-card-top">
+    <div className="interview-card">
 
-        <div className="candidate-logo">
+      <div className="card-ai">
 
-          💼
+        <FaRobot />
 
-        </div>
-
-        <div>
-
-          <h3>{interview.title}</h3>
-
-          <p>
-            {interview.description}
-          </p>
-
-        </div>
+        AI
 
       </div>
 
-      <div className="candidate-tags">
+      <div className="card-icon">
 
-        <span>
+        {typeof icon === "string" && icon.startsWith("/") ? (
 
-          <FaBook />
+  <img
+    src={icon}
+    alt={interview.title}
+  />
 
-          {interview.category?.name}
+) : (
 
-        </span>
+  <span>{icon}</span>
 
-        <span>
+)}
 
-          <FaLayerGroup />
+      </div>
 
-          {interview.difficulty}
+      <h3>
 
-        </span>
+        {interview.title}
+
+      </h3>
+
+   <p className="card-category">
+  {interview.company || `${category} Development`}
+</p>
+
+      <span
+        className={`difficulty ${difficultyColor[
+          interview.difficulty
+        ]}`}
+      >
+
+        {interview.difficulty}
+
+      </span>
+
+      <div className="card-info">
 
         <span>
 
@@ -60,12 +128,27 @@ const InterviewCard = ({
 
         </span>
 
+        <span>
+
+          <FaQuestionCircle />
+
+          {interview.questions?.length || 0} Questions
+
+        </span>
+
       </div>
 
+      <p className="card-description">
+
+        {interview.description ||
+          "Practice AI generated interview questions tailored for your skill level."}
+
+      </p>
+
       <button
-        className="candidate-start-btn"
         onClick={onStart}
       >
+
         Start Interview
 
         <FaArrowRight />
@@ -73,7 +156,9 @@ const InterviewCard = ({
       </button>
 
     </div>
+
   );
+
 };
 
 export default InterviewCard;
