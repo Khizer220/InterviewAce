@@ -10,6 +10,9 @@ import Categories from "../pages/Admin/Categories/Categories";
 import Questions from "../pages/Admin/Questions/Questions";
 import AIInterviews from "../pages/Admin/AIInterviews/AIInterviews";
 import CandidateDashboard from "../pages/Candidate/CandidateDashboard";
+import Coding from "../pages/Admin/Coding/Coding";
+import Analytics from "../pages/Admin/Analytics/Analytics";
+import ResumeReviews from "../pages/Admin/ResumeReviews/ResumeReviews";
 
 
 // Candidate
@@ -17,6 +20,7 @@ import MockInterview from "../pages/Candidate/MockInterview/MockInterview";
 import AllInterviews from "../pages/Candidate/AllInterviews/AllInterviews";
 import PendingUsers from "../pages/Admin/PendingUsers/PendingUsers";
 import Users from "../pages/Admin/Users/Users";
+import Resume from "../pages/Candidate/Resume/Resume";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -82,7 +86,13 @@ const AppRoutes = () => {
   path="/admin/users"
   element={<Users />}
 />
-      
+<Route path="/admin/coding" element={<Coding />} />
+
+<Route path="/admin/analytics" element={<Analytics />} />
+
+<Route path="/candidate/resume" element={<Resume />} />
+<Route path="/admin/resumes" element={<ResumeReviews />} />
+
     </Routes>
   );
 };

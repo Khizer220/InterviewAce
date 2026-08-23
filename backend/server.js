@@ -15,7 +15,7 @@ const interviewCategoryRoutes = require("./routes/interviewCategoryRoutes");
 const questionRoutes = require("./routes/questionRoutes");
 const interviewTemplateRoutes = require("./routes/interviewTemplateRoutes");
 const aiRoutes = require("./routes/aiRoutes");
-
+const codingRoutes = require("./routes/codingRoutes");
 // ======================================
 // Connect Database
 // ======================================
@@ -64,6 +64,7 @@ app.use(
   "/api/interview-attempts",
   interviewAttemptRoutes
 );
+app.use("/api/coding", codingRoutes);
 
 // ======================================
 // Root Route

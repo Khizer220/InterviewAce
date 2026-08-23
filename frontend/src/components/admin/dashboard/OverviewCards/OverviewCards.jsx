@@ -8,61 +8,44 @@ import {
 
 import styles from "./OverviewCards.module.css";
 
-const cards = [
-  {
-    title: "Categories",
-    value: 8,
-    growth: "+2 this week",
-    icon: <FaFolder />,
-    color: "#6C4CF1",
-  },
-  {
-    title: "Questions",
-    value: 120,
-    growth: "+15 this week",
-    icon: <FaQuestionCircle />,
-    color: "#10B981",
-  },
-  {
-    title: "Users",
-    value: 45,
-    growth: "+8 this week",
-    icon: <FaUsers />,
-    color: "#F97316",
-  },
-  {
-    title: "Interviews",
-    value: 12,
-    growth: "+3 this week",
-    icon: <FaBriefcase />,
-    color: "#3B82F6",
-  },
+const CARD_META = [
+  { key: "categories", title: "Categories", icon: <FaFolder />, color: "#6C4CF1" },
+  { key: "questions", title: "Questions", icon: <FaQuestionCircle />, color: "#10B981" },
+  { key: "users", title: "Users", icon: <FaUsers />, color: "#F97316" },
+  { key: "interviews", title: "Interviews", icon: <FaBriefcase />, color: "#3B82F6" },
 ];
 
-const OverviewCards = () => {
+const OverviewCards = ({ overview }) => {
   return (
     <div className={styles.grid}>
-      {cards.map((card, index) => (
-        <div className={styles.card} key={index}>
-          <div
-            className={styles.icon}
-            style={{ background: card.color }}
-          >
-            {card.icon}
+      {CARD_META.map((meta) => {
+        const data = overview?.[meta.key];
+        const value = data?.value ?? 0;
+        const weekCount = data?.weekCount ?? 0;
+
+        return (
+          <div className={styles.card} key={meta.key}>
+            <div className={styles.icon} style={{ background: meta.color }}>
+              {meta.icon}
+            </div>
+
+            <div className={styles.content}>
+              <p>{meta.title}</p>
+
+              <h2>{value}</h2>
+
+              {weekCount > 0 ? (
+                <span>
+                  +{weekCount} this week
+                  <FaArrowUp />
+                </span>
+              ) : (
+                <span>No change this week</span>
+              )}
+            </div>
           </div>
-
-          <div className={styles.content}>
-            <p>{card.title}</p>
-
-            <h2>{card.value}</h2>
-
-            <span>
-              {card.growth}
-              <FaArrowUp />
-            </span>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

@@ -1,0 +1,129 @@
+.container {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e4e8ef;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.header h2 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.caption {
+  margin: 0;
+  max-width: 460px;
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.header button {
+  flex-shrink: 0;
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #ddd5ff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #6546ef;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header button:hover {
+  background: #f3f0ff;
+}
+
+.empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableHeader,
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.7fr 1.3fr;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+}
+
+.tableHeader {
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid #edf0f4;
+}
+
+.row {
+  border-bottom: 1px solid #f4f6f9;
+  font-size: 13px;
+  color: #334155;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.questionText {
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.categoryText {
+  color: #6546ef;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.attemptsText {
+  font-weight: 600;
+}
+
+.scoreCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.scoreTrack {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: #edf0f5;
+  overflow: hidden;
+}
+
+.scoreFill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #16a34a, #4ade80);
+  border-radius: inherit;
+}

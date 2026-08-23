@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
@@ -8,13 +7,14 @@ const {
   approveUser,
   rejectUser,
   deleteUser,
+  updateUserStack,
+  getCandidateInterviews,
+  getAnalytics,
+  getResumes,
+  getDashboardOverview,
 } = require("../controllers/adminController");
 
 const { protect } = require("../middleware/authMiddleware");
-
-// ======================================
-// Admin Authorization Middleware
-// ======================================
 
 const adminOnly = (req, res, next) => {
   if (!req.user || req.user.role !== "admin") {
@@ -27,43 +27,27 @@ const adminOnly = (req, res, next) => {
   next();
 };
 
-// ======================================
-// Apply Authentication + Admin Check
-// ======================================
-
 router.use(protect);
 router.use(adminOnly);
 
-// ======================================
-// Pending Candidates
-// ======================================
 router.get("/users", getUsers);
+
 router.get("/users/pending", getPendingUsers);
 
-// ======================================
-// Approve Candidate
-// ======================================
+router.patch("/users/:id/approve", approveUser);
 
-router.patch(
-  "/users/:id/approve",
-  approveUser
-);
+router.patch("/users/:id/reject", rejectUser);
 
-// ======================================
-// Reject Candidate
-// ======================================
+router.patch("/users/:id/stack", updateUserStack);
 
-router.patch(
-  "/users/:id/reject",
-  rejectUser
-);
+router.get("/users/:id/interviews", getCandidateInterviews);
 
-// ======================================
-// Remove Candidate
-// ======================================
+router.get("/analytics", getAnalytics);
 
-router.delete(
-  "/users/:id",
-  deleteUser
-);
+router.get("/resumes", getResumes);
+
+router.get("/dashboard-overview", getDashboardOverview);
+
+router.delete("/users/:id", deleteUser);
+
 module.exports = router;

@@ -6,7 +6,10 @@ import {
 
 import "./TopHeader.css";
 
-const TopHeader = () => {
+const TopHeader = ({ user }) => {
+  const firstName = user?.fullName?.split(" ")[0] || "there";
+  const displayName = user?.fullName || "Candidate";
+
   return (
     <header className="top-header">
 
@@ -14,7 +17,7 @@ const TopHeader = () => {
 
         <h1>
           Welcome back,
-          <span> Khizer 👋</span>
+          <span> {firstName} 👋</span>
         </h1>
 
         <p>
@@ -39,14 +42,20 @@ const TopHeader = () => {
 
         <div className="profile-box">
 
-          <img
-            src="https://i.pravatar.cc/150?img=12"
-            alt=""
-          />
+          {user?.profileImage ? (
+            <img
+              src={user.profileImage}
+              alt={displayName}
+            />
+          ) : (
+            <div className="profile-box-initial">
+              {displayName.charAt(0).toUpperCase()}
+            </div>
+          )}
 
           <div>
 
-            <h4>Khizer</h4>
+            <h4>{displayName}</h4>
 
             <span>Candidate</span>
 

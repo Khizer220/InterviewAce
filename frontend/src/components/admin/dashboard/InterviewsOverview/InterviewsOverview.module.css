@@ -1,0 +1,134 @@
+.container {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e4e8ef;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.header button {
+  height: 32px;
+  padding: 0 14px;
+  border: 1px solid #ddd5ff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #6546ef;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header button:hover {
+  background: #f3f0ff;
+}
+
+.empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donutWrap {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+}
+
+.donut {
+  width: 100%;
+  height: 100%;
+}
+
+.donutCenter {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.donutCenter strong {
+  font-size: 22px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.donutCenter span {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.legendRow span {
+  flex: 1;
+  color: #334155;
+}
+
+.legendRow strong {
+  color: #111827;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.delta {
+  margin: 16px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.delta.up {
+  color: #16a34a;
+}
+
+.delta.down {
+  color: #dc2626;
+}

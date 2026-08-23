@@ -1,0 +1,128 @@
+.container {
+  width: 100%;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e4e8ef;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.countBadge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fff4dd;
+  color: #e58a00;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.empty {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.card {
+  flex: 1 1 220px;
+  max-width: 280px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #edf0f4;
+  border-radius: 12px;
+  background: #fafbff;
+  box-sizing: border-box;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #fff4dd, #ffe4b0);
+  color: #b45309;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.info {
+  min-width: 0;
+}
+
+.info h4 {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info p {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.reviewBtn {
+  align-self: flex-end;
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 10px;
+  background: #6546ef;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reviewBtn svg:last-child {
+  font-size: 11px;
+}
+
+.reviewBtn:hover {
+  background: #5739df;
+}

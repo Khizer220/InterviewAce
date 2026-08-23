@@ -5,12 +5,23 @@
 }
 
 /* =========================
-   Bottom Layout
+   Row 1 — Quick Actions + Recent Activity
+========================= */
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* =========================
+   Row 2 — Top Performing Questions + Interviews Overview
 ========================= */
 
 .bottomGrid {
   display: grid;
-  grid-template-columns: 1.1fr 1.3fr 1fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 24px;
   align-items: start;
 }
@@ -20,6 +31,7 @@
 .right {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 /* =========================
@@ -39,6 +51,7 @@
 ========================= */
 
 @media (max-width: 1200px) {
+  .topGrid,
   .bottomGrid {
     grid-template-columns: 1fr;
   }

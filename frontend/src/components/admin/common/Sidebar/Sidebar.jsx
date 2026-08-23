@@ -18,6 +18,10 @@ import styles from "./Sidebar.module.css";
 const Sidebar = () => {
   const navigate = useNavigate();
 
+  const admin = JSON.parse(localStorage.getItem("user") || "null");
+  const adminName = admin?.fullName || "Admin";
+  const adminInitial = adminName.charAt(0).toUpperCase();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -203,11 +207,11 @@ const Sidebar = () => {
         <div className={styles.profile}>
 
           <div className={styles.avatar}>
-            N
+            {adminInitial}
           </div>
 
           <div>
-            <h4>Nagu</h4>
+            <h4>{adminName}</h4>
             <p>Administrator</p>
           </div>
 
