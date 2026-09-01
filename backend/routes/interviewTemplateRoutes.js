@@ -5,6 +5,7 @@ const router = express.Router();
 const {
   getInterviewTemplates,
   getInterviewTemplate,
+  getCandidateInterviews,
   createInterviewTemplate,
   updateInterviewTemplate,
   deleteInterviewTemplate,
@@ -12,39 +13,69 @@ const {
   duplicateInterviewTemplate,
 } = require("../controllers/interviewTemplateController");
 
-// =============================
-// Get All Templates
-// =============================
-router.get("/", getInterviewTemplates);
+// ======================================
+// Candidate - Get Active Interviews
+// IMPORTANT: Must come before /:id
+// ======================================
+router.get(
+  "/candidate",
+  getCandidateInterviews
+);
 
-// =============================
+// ======================================
+// Admin - Get All Templates
+// ======================================
+router.get(
+  "/",
+  getInterviewTemplates
+);
+
+// ======================================
 // Get Single Template
-// =============================
-router.get("/:id", getInterviewTemplate);
+// ======================================
+router.get(
+  "/:id",
+  getInterviewTemplate
+);
 
-// =============================
+// ======================================
 // Create Template
-// =============================
-router.post("/", createInterviewTemplate);
+// ======================================
+router.post(
+  "/",
+  createInterviewTemplate
+);
 
-// =============================
+// ======================================
 // Update Template
-// =============================
-router.put("/:id", updateInterviewTemplate);
+// ======================================
+router.put(
+  "/:id",
+  updateInterviewTemplate
+);
 
-// =============================
+// ======================================
 // Delete Template
-// =============================
-router.delete("/:id", deleteInterviewTemplate);
+// ======================================
+router.delete(
+  "/:id",
+  deleteInterviewTemplate
+);
 
-// =============================
+// ======================================
 // Toggle Status
-// =============================
-router.patch("/:id/status", toggleInterviewStatus);
+// ======================================
+router.patch(
+  "/:id/status",
+  toggleInterviewStatus
+);
 
-// =============================
+// ======================================
 // Duplicate Template
-// =============================
-router.post("/:id/duplicate", duplicateInterviewTemplate);
+// ======================================
+router.post(
+  "/:id/duplicate",
+  duplicateInterviewTemplate
+);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const router = express.Router();
 const {
   createQuestion,
   saveAIQuestions,
+  saveAIMCQQuestions,
   getQuestions,
   getQuestionsByCategory,
   updateQuestion,
@@ -20,6 +21,11 @@ router.post("/", createQuestion);
 // Save AI Generated Questions
 // ==========================
 router.post("/save-ai", saveAIQuestions);
+
+// ==========================
+// Save AI Generated MCQ Questions
+// ==========================
+router.post("/save-ai-mcq", saveAIMCQQuestions);
 
 // ==========================
 // Get All Questions

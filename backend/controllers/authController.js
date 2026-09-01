@@ -33,7 +33,6 @@ const registerUser = async (req, res) => {
       adminKey,
     } = req.body;
 
-    // Validate basic fields
     if (!fullName || !email || !password) {
       return res.status(400).json({
         success: false,
@@ -41,7 +40,6 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // Validate role
     if (!["candidate", "admin"].includes(role)) {
       return res.status(400).json({
         success: false,
@@ -49,10 +47,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // =================================
-    // ADMIN REGISTRATION
-    // =================================
-
+    // Admin registration
     if (role === "admin") {
       if (!adminKey) {
         return res.status(400).json({
@@ -61,9 +56,7 @@ const registerUser = async (req, res) => {
         });
       }
 
-      if (
-        adminKey !== process.env.ADMIN_REGISTRATION_KEY
-      ) {
+      if (adminKey !== process.env.ADMIN_REGISTRATION_KEY) {
         return res.status(403).json({
           success: false,
           message: "Invalid admin registration key",
@@ -71,10 +64,7 @@ const registerUser = async (req, res) => {
       }
     }
 
-    // =================================
-    // CHECK EXISTING USER
-    // =================================
-
+    // Check existing user
     const existingUser = await User.findOne({
       email: email.toLowerCase(),
     });
@@ -86,37 +76,22 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // =================================
-    // HASH PASSWORD
-    // =================================
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const hashedPassword = await bcrypt.hash(
-      password,
-      10
-    );
-
-    // =================================
-    // CREATE USER
-    // =================================
-
+    // Create user
     const user = await User.create({
       fullName,
       email: email.toLowerCase(),
       password: hashedPassword,
       role,
-
-      // Admins are automatically approved.
-      // Candidates require administrator approval.
       isApproved: role === "admin",
-
-      // New users have no activity yet.
       lastLogin: null,
       lastActive: null,
     });
 
     return res.status(201).json({
       success: true,
-
       message:
         role === "admin"
           ? "Admin account created successfully."
@@ -131,10 +106,7 @@ const registerUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(
-      "Registration Error:",
-      error
-    );
+    console.error("Registration Error:", error);
 
     return res.status(500).json({
       success: false,
@@ -151,20 +123,12 @@ const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // =================================
-    // VALIDATE FIELDS
-    // =================================
-
     if (!email || !password) {
       return res.status(400).json({
         success: false,
         message: "Email and Password are required",
       });
     }
-
-    // =================================
-    // FIND USER
-    // =================================
 
     const user = await User.findOne({
       email: email.toLowerCase(),
@@ -176,10 +140,6 @@ const loginUser = async (req, res) => {
         message: "Invalid email or password",
       });
     }
-
-    // =================================
-    // CHECK PASSWORD
-    // =================================
 
     const isMatch = await bcrypt.compare(
       password,
@@ -193,10 +153,6 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // =================================
-    // CHECK ACTIVE ACCOUNT
-    // =================================
-
     if (!user.isActive) {
       return res.status(403).json({
         success: false,
@@ -204,10 +160,6 @@ const loginUser = async (req, res) => {
           "Your account has been deactivated. Please contact the administrator.",
       });
     }
-
-    // =================================
-    // CANDIDATE APPROVAL CHECK
-    // =================================
 
     if (
       user.role === "candidate" &&
@@ -220,10 +172,6 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // =================================
-    // UPDATE LOGIN ACTIVITY
-    // =================================
-
     const now = new Date();
 
     user.lastLogin = now;
@@ -231,15 +179,7 @@ const loginUser = async (req, res) => {
 
     await user.save();
 
-    // =================================
-    // GENERATE TOKEN
-    // =================================
-
     const token = generateToken(user);
-
-    // =================================
-    // LOGIN RESPONSE
-    // =================================
 
     return res.status(200).json({
       success: true,
@@ -255,8 +195,6 @@ const loginUser = async (req, res) => {
         isApproved: user.isApproved,
         isActive: user.isActive,
 
-        // Send activity information
-        // to the frontend as well.
         lastLogin: user.lastLogin,
         lastActive: user.lastActive,
 
@@ -270,10 +208,7 @@ const loginUser = async (req, res) => {
       },
     });
   } catch (error) {
-    console.error(
-      "Login Error:",
-      error
-    );
+    console.error("Login Error:", error);
 
     return res.status(500).json({
       success: false,
@@ -287,10 +222,101 @@ const loginUser = async (req, res) => {
 // ===============================
 
 const getProfile = async (req, res) => {
-  return res.status(200).json({
-    success: true,
-    user: req.user,
-  });
+  try {
+    return res.status(200).json({
+      success: true,
+      user: req.user,
+    });
+  } catch (error) {
+    console.error("Get Profile Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch profile",
+    });
+  }
+};
+
+// ===============================
+// Update Logged-in User Profile
+// ===============================
+
+const updateProfile = async (req, res) => {
+  try {
+    const { fullName, email } = req.body;
+
+    if (!fullName || !fullName.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Full name is required",
+      });
+    }
+
+    if (!email || !email.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Email is required",
+      });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+
+    // Check whether another user already owns this email
+    const existingUser = await User.findOne({
+      email: normalizedEmail,
+      _id: { $ne: req.user._id },
+    });
+
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "This email is already registered to another account",
+      });
+    }
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    user.fullName = fullName.trim();
+    user.email = normalizedEmail;
+
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Profile updated successfully",
+
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        role: user.role,
+        isApproved: user.isApproved,
+        isActive: user.isActive,
+        lastLogin: user.lastLogin,
+        lastActive: user.lastActive,
+        stack: user.stack || [],
+        progress: user.progress || {
+          completed: 0,
+          total: 0,
+          percentage: 0,
+        },
+      },
+    });
+  } catch (error) {
+    console.error("Update Profile Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update profile",
+    });
+  }
 };
 
 // ===============================
@@ -301,4 +327,5 @@ module.exports = {
   registerUser,
   loginUser,
   getProfile,
+  updateProfile,
 };

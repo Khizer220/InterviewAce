@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 import {
   FaClipboardList,
   FaChartLine,
@@ -10,60 +7,42 @@ import {
 
 import "./StatisticsCards.css";
 
-const API = "http://localhost:5000/api";
+const StatisticsCards = ({ attempts = [] }) => {
+  const completedAttempts = attempts.filter(
+    (attempt) =>
+      attempt.status === "Completed" ||
+      attempt.status === "Evaluated"
+  );
 
-const StatisticsCards = ({ interviews = [] }) => {
-  const [stats, setStats] = useState({
-    attempts: 0,
-    average: 0,
-    reports: 0,
-    bookmarks: 0,
-  });
+  const evaluatedAttempts = attempts.filter(
+    (attempt) =>
+      attempt.status === "Evaluated"
+  );
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const scores = evaluatedAttempts
+    .map((attempt) =>
+      Number(attempt.percentage)
+    )
+    .filter(
+      (score) =>
+        !Number.isNaN(score)
+    );
 
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      const res = await axios.get(
-        `${API}/interview-attempts/candidate/${user.id}`
-      );
-
-      const attempts = res.data.attempts || [];
-
-      const average =
-        attempts.length > 0
-          ? Math.round(
-              attempts.reduce(
-                (sum, item) => sum + item.percentage,
-                0
-              ) / attempts.length
-            )
-          : 0;
-
-      const reports = attempts.filter(
-        (item) => item.status === "Evaluated"
-      ).length;
-
-      setStats({
-        attempts: attempts.length,
-        average,
-        reports,
-        bookmarks: 0,
-      });
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const average =
+    scores.length > 0
+      ? Math.round(
+          scores.reduce(
+            (sum, score) =>
+              sum + score,
+            0
+          ) / scores.length
+        )
+      : 0;
 
   const cards = [
     {
       title: "Interviews Taken",
-      value: stats.attempts,
+      value: completedAttempts.length,
       subtitle: "Completed Interviews",
       icon: <FaClipboardList />,
       color: "#7C5CFC",
@@ -71,7 +50,7 @@ const StatisticsCards = ({ interviews = [] }) => {
     },
     {
       title: "Average Score",
-      value: `${stats.average}%`,
+      value: `${average}%`,
       subtitle: "AI Evaluation",
       icon: <FaChartLine />,
       color: "#22C55E",
@@ -79,7 +58,7 @@ const StatisticsCards = ({ interviews = [] }) => {
     },
     {
       title: "Reports",
-      value: stats.reports,
+      value: evaluatedAttempts.length,
       subtitle: "Generated Reports",
       icon: <FaFolderOpen />,
       color: "#3B82F6",
@@ -87,7 +66,7 @@ const StatisticsCards = ({ interviews = [] }) => {
     },
     {
       title: "Bookmarks",
-      value: stats.bookmarks,
+      value: 0,
       subtitle: "Saved Interviews",
       icon: <FaBookmark />,
       color: "#F59E0B",
@@ -105,7 +84,8 @@ const StatisticsCards = ({ interviews = [] }) => {
           <div
             className="candidate-stat-icon"
             style={{
-              background: card.background,
+              background:
+                card.background,
               color: card.color,
             }}
           >
@@ -113,13 +93,19 @@ const StatisticsCards = ({ interviews = [] }) => {
           </div>
 
           <div className="candidate-stat-content">
+
             <span className="candidate-stat-title">
               {card.title}
             </span>
 
-            <h2>{card.value}</h2>
+            <h2>
+              {card.value}
+            </h2>
 
-            <p>{card.subtitle}</p>
+            <p>
+              {card.subtitle}
+            </p>
+
           </div>
         </div>
       ))}

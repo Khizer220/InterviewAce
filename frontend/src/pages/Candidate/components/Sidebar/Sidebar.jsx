@@ -1,19 +1,33 @@
+import { NavLink, useNavigate } from "react-router-dom";
+
 import {
   HiOutlineHome,
   HiOutlineSparkles,
-  HiOutlineClock,
-  HiOutlineBookmark,
+  HiOutlineCodeBracket,
+  HiOutlineListBullet,
   HiOutlineDocumentText,
-  HiOutlineAcademicCap,
   HiOutlineChartBar,
   HiOutlineUser,
-  HiOutlineCog6Tooth,
+  HiOutlineClipboardDocumentCheck,
   HiOutlineArrowLeftOnRectangle,
 } from "react-icons/hi2";
 
 import "./Sidebar.css";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? "nav-item active"
+      : "nav-item";
+
   return (
     <aside className="candidate-sidebar">
 
@@ -25,11 +39,11 @@ const Sidebar = () => {
         </div>
 
         <div className="logo-text">
-          <h2>
-            Interview<span style={{ color: "#6D5DFC" }}>Ace</span>
-          </h2>
-
-          <span>AI Interview Platform</span>
+          <h2>Interview</h2>
+          <h3>Ace</h3>
+          <span>
+            AI Interview Platform
+          </span>
         </div>
 
       </div>
@@ -37,57 +51,79 @@ const Sidebar = () => {
       {/* Navigation */}
       <nav className="sidebar-nav">
 
-        <button className="nav-item active">
+        <NavLink
+          to="/candidate/dashboard"
+          className={linkClass}
+        >
           <HiOutlineHome />
           <span>Dashboard</span>
-        </button>
+        </NavLink>
 
-        <button className="nav-item">
+        <NavLink
+          to="/candidate/interviews"
+          className={linkClass}
+        >
           <HiOutlineSparkles />
           <span>AI Interviews</span>
-        </button>
+        </NavLink>
 
-        <button className="nav-item">
-          <HiOutlineClock />
-          <span>Interview History</span>
-        </button>
+        <NavLink
+          to="/candidate/coding"
+          className={linkClass}
+        >
+          <HiOutlineCodeBracket />
+          <span>Coding Practice</span>
+        </NavLink>
 
-        <button className="nav-item">
-          <HiOutlineBookmark />
-          <span>Bookmarks</span>
-        </button>
+        <NavLink
+          to="/candidate/mcq"
+          className={linkClass}
+        >
+          <HiOutlineListBullet />
+          <span>MCQ Practice</span>
+        </NavLink>
 
-        <button className="nav-item">
+        <NavLink
+          to="/candidate/resume"
+          className={linkClass}
+        >
           <HiOutlineDocumentText />
-          <span>Reports</span>
-        </button>
+          <span>Resume Review</span>
+        </NavLink>
 
-        <button className="nav-item">
-          <HiOutlineAcademicCap />
-          <span>Improve Skills</span>
-        </button>
-
-        <button className="nav-item">
+        <NavLink
+          to="/candidate/performance"
+          className={linkClass}
+        >
           <HiOutlineChartBar />
-          <span>Progress</span>
-        </button>
+          <span>Performance</span>
+        </NavLink>
 
-        <button className="nav-item">
+        <NavLink
+          to="/candidate/results"
+          className={linkClass}
+        >
+          <HiOutlineClipboardDocumentCheck />
+          <span>Results</span>
+        </NavLink>
+
+        <NavLink
+          to="/candidate/profile"
+          className={linkClass}
+        >
           <HiOutlineUser />
           <span>Profile</span>
-        </button>
-
-        <button className="nav-item">
-          <HiOutlineCog6Tooth />
-          <span>Settings</span>
-        </button>
+        </NavLink>
 
       </nav>
 
       <div className="sidebar-spacer"></div>
 
       {/* Logout */}
-      <button className="logout-btn">
+      <button
+        className="logout-btn"
+        onClick={handleLogout}
+      >
         <HiOutlineArrowLeftOnRectangle />
         <span>Logout</span>
       </button>

@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 import "./QuestionScreen.css";
 
 const API = "http://localhost:5000/api";
 
 const QuestionScreen = ({ interview }) => {
-  const questions = interview.questions || [];
+  const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const questions = interview.questions || [];
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
+
   const [timeLeft, setTimeLeft] = useState(
     interview.duration * 60
   );
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // =========================================
+  // TIMER
+  // =========================================
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -28,11 +37,21 @@ const QuestionScreen = ({ interview }) => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
+  // =========================================
+  // NO QUESTIONS
+  // =========================================
+
   if (questions.length === 0) {
     return (
       <div className="question-screen">
-        <div className="question-card">
+        <div className="question-card empty-question-card">
+          <div className="empty-icon">?</div>
+
           <h2>No Questions Found</h2>
+
+          <p>
+            This interview does not contain any questions.
+          </p>
         </div>
       </div>
     );
@@ -40,8 +59,16 @@ const QuestionScreen = ({ interview }) => {
 
   const question = questions[currentQuestion];
 
+  // =========================================
+  // PROGRESS
+  // =========================================
+
   const progress =
     ((currentQuestion + 1) / questions.length) * 100;
+
+  // =========================================
+  // TIMER
+  // =========================================
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -51,6 +78,10 @@ const QuestionScreen = ({ interview }) => {
     "0"
   )}:${String(seconds).padStart(2, "0")}`;
 
+  // =========================================
+  // ANSWER CHANGE
+  // =========================================
+
   const handleChange = (e) => {
     setAnswers({
       ...answers,
@@ -58,7 +89,25 @@ const QuestionScreen = ({ interview }) => {
     });
   };
 
+  // =========================================
+  // SUBMIT INTERVIEW
+  // =========================================
+
   const submitInterview = async () => {
+    if (isSubmitting) {
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Your session has expired. Please login again.");
+      navigate("/login");
+      return;
+    }
+
+    setIsSubmitting(true);
+
     console.log("===== SUBMIT CLICKED =====");
 
     try {
@@ -70,7 +119,6 @@ const QuestionScreen = ({ interview }) => {
       }));
 
       const payload = {
-        candidate: user.id,
         interview: interview._id,
         answers: formattedAnswers,
       };
@@ -82,7 +130,13 @@ const QuestionScreen = ({ interview }) => {
 
       const response = await axios.post(
         `${API}/interview-attempts`,
-        payload
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       console.log("================================");
@@ -92,84 +146,279 @@ const QuestionScreen = ({ interview }) => {
 
       alert("Interview Submitted Successfully!");
 
-    } catch (err) {
+      navigate("/candidate/performance");
 
+    } catch (err) {
       console.error("FULL ERROR:", err);
 
-      if (err.response) {
-       console.log("STATUS:", err.response.status);
-console.log("MESSAGE:", err.response.data.message);
-console.log("FULL DATA:", JSON.stringify(err.response.data, null, 2));
-      } else {
-        console.log("ERROR:", err.message);
+      console.log(
+        "STATUS:",
+        err.response?.status
+      );
+
+      console.log(
+        "MESSAGE:",
+        err.response?.data?.message
+      );
+
+      if (err.response?.status === 401) {
+        alert(
+          "Your session has expired. Please login again."
+        );
+
+        localStorage.removeItem("token");
+        navigate("/login");
+
+        return;
       }
 
-      alert("Failed to submit interview.");
+      alert(
+        err.response?.data?.message ||
+        "Failed to submit interview."
+      );
+
+      setIsSubmitting(false);
     }
   };
+
+  // =========================================
+  // NEXT
+  // =========================================
+
+  const handleNext = () => {
+    if (
+      currentQuestion <
+      questions.length - 1
+    ) {
+      setCurrentQuestion(
+        currentQuestion + 1
+      );
+    } else {
+      submitInterview();
+    }
+  };
+
+  // =========================================
+  // PREVIOUS
+  // =========================================
+
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(
+        currentQuestion - 1
+      );
+    }
+  };
+
+  // =========================================
+  // CURRENT ANSWER
+  // =========================================
+
+  const currentAnswer =
+    answers[question._id] || "";
 
   return (
     <div className="question-screen">
 
       <div className="question-card">
 
-        <h1>{interview.title}</h1>
+        {/* HEADER */}
 
-        <p>
-          Question {currentQuestion + 1} of{" "}
-          {questions.length}
-        </p>
+        <div className="question-header">
 
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${progress}%` }}
-          />
+          <div>
+
+            <h1>
+              {interview.title}
+            </h1>
+
+            <p>
+              Question{" "}
+              <strong>
+                {currentQuestion + 1}
+              </strong>{" "}
+              of {questions.length}
+            </p>
+
+          </div>
+
+          <div className="question-timer">
+
+            <span className="timer-icon">
+              ◷
+            </span>
+
+            <span>
+              {formattedTime}
+            </span>
+
+            <small>
+              Remaining
+            </small>
+
+          </div>
+
         </div>
 
-        <div className="timer">
-          ⏱ {formattedTime} Remaining
+        {/* PROGRESS */}
+
+        <div className="progress-wrapper">
+
+          <div className="progress-bar">
+
+            <div
+              className="progress-fill"
+              style={{
+                width: `${progress}%`,
+              }}
+            />
+
+          </div>
+
         </div>
 
-        <div className="question-box">
+        {/* QUESTION SECTION */}
 
-          <h2>{question.question}</h2>
+        <section className="question-section">
 
-          <textarea
-            rows="8"
-            placeholder="Type your answer here..."
-            value={answers[question._id] || ""}
-            onChange={handleChange}
-          />
+          <div className="section-label">
 
-        </div>
+            <span className="section-icon question-icon">
+              ?
+            </span>
+
+            <div>
+
+              <span className="section-title">
+                Question
+              </span>
+
+              <span className="section-subtitle">
+                Read the question carefully
+              </span>
+
+            </div>
+
+          </div>
+
+          <div className="question-content">
+
+            <h2>
+              {question.question}
+            </h2>
+
+          </div>
+
+          {question.topic && (
+            <div className="question-topic">
+              Topic: {question.topic}
+            </div>
+          )}
+
+        </section>
+
+        {/* ANSWER SECTION */}
+
+        <section className="answer-section">
+
+          <div className="section-label">
+
+            <span className="section-icon answer-icon">
+              ✎
+            </span>
+
+            <div>
+
+              <span className="section-title">
+                Your Answer
+              </span>
+
+              <span className="section-subtitle">
+                Write your answer below
+              </span>
+
+            </div>
+
+          </div>
+
+          <div className="answer-input-wrapper">
+
+            <textarea
+              value={currentAnswer}
+              onChange={handleChange}
+              placeholder="Type your answer here..."
+              maxLength={2000}
+              disabled={isSubmitting}
+            />
+
+            <div className="answer-footer">
+
+              <span>
+                Your answer will be evaluated by AI.
+              </span>
+
+              <span>
+                {currentAnswer.length} / 2000
+              </span>
+
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* NAVIGATION */}
 
         <div className="navigation">
 
           <button
-            disabled={currentQuestion === 0}
-            onClick={() =>
-              setCurrentQuestion(currentQuestion - 1)
+            type="button"
+            className="previous-btn"
+            disabled={
+              currentQuestion === 0 ||
+              isSubmitting
             }
+            onClick={handlePrevious}
           >
+            <span>←</span>
             Previous
           </button>
 
-          {currentQuestion === questions.length - 1 ? (
+          <div className="navigation-info">
+            {currentQuestion + 1} /{" "}
+            {questions.length}
+          </div>
+
+          {currentQuestion ===
+          questions.length - 1 ? (
+
             <button
+              type="button"
               className="submit-btn"
               onClick={submitInterview}
+              disabled={isSubmitting}
             >
-              Submit Interview
+              {isSubmitting
+                ? "Submitting..."
+                : "Submit Interview"}
+
+              {!isSubmitting && (
+                <span>✓</span>
+              )}
             </button>
+
           ) : (
+
             <button
-              onClick={() =>
-                setCurrentQuestion(currentQuestion + 1)
-              }
+              type="button"
+              className="next-btn"
+              onClick={handleNext}
+              disabled={isSubmitting}
             >
-              Next
+              Next Question
+              <span>→</span>
             </button>
+
           )}
 
         </div>

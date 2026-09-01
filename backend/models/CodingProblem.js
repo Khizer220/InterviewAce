@@ -52,6 +52,22 @@ const codingProblemSchema = new mongoose.Schema(
     ],
 
     // ======================================
+    // PROBLEM LIMITS
+    // ======================================
+
+    timeLimit: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    memoryLimit: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+
+    // ======================================
     // PROBLEM DETAILS
     // ======================================
 
@@ -178,8 +194,6 @@ const codingProblemSchema = new mongoose.Schema(
 
     // ======================================
     // SUBMISSION STATISTICS
-    // These will be updated by the submission
-    // system later.
     // ======================================
 
     totalSubmissions: {

@@ -7,6 +7,7 @@ const createCategory = async (req, res) => {
       name,
       description,
       icon,
+      type,
       difficulty,
       duration,
       totalQuestions,
@@ -21,10 +22,13 @@ const createCategory = async (req, res) => {
       });
     }
 
+    const ALLOWED_TYPES = ["Q&A", "Coding", "MCQ"];
+
     const category = await InterviewCategory.create({
       name,
       description,
       icon,
+      type: ALLOWED_TYPES.includes(type) ? type : "Q&A",
       difficulty,
       duration,
       totalQuestions,

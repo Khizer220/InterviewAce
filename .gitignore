@@ -17,4 +17,5 @@ npm-debug.log*
 Thumbs.db
 
 # VS Code settings
-.vscode/
+.vscode/**/uploads/
+/backend/uploads/

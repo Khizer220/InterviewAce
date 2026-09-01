@@ -1,145 +1,344 @@
-.resume-page {
+/* =========================================================
+   INTERVIEWACE - CANDIDATE RESUME
+   Uses existing Candidate Sidebar
+   ========================================================= */
+
+.candidate-resume-layout {
+  min-height: 100vh;
   width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 32px 20px 60px;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #111827;
+  display: flex;
+  background: #f7f8fc;
 }
 
+
+/* =========================================================
+   RESUME PAGE
+   ========================================================= */
+
+.resume-page {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding: 42px 48px 60px;
+
+  background: #f7f8fc;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.resume-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .resume-header {
-  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  margin-bottom: 30px;
+}
+
+.resume-header-icon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #6546ef,
+    #7c3aed
+  );
+
+  color: #ffffff;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 10px 24px rgba(101, 70, 239, 0.2);
 }
 
 .resume-badge {
   display: inline-block;
-  margin-bottom: 8px;
-  padding: 6px 12px;
-  border-radius: 8px;
+
+  margin-bottom: 6px;
+
+  padding: 5px 10px;
+
+  border-radius: 7px;
+
   background: #eeeaff;
+
   color: #6546ef;
-  font-size: 12px;
+
+  font-size: 11px;
   font-weight: 700;
 }
 
 .resume-header h1 {
   margin: 0;
-  font-size: 28px;
+
+  color: #111827;
+
+  font-size: 30px;
+  line-height: 1.2;
+
   font-weight: 800;
+
+  letter-spacing: -0.6px;
 }
 
 .resume-header p {
-  margin: 4px 0 0;
+  margin: 6px 0 0;
+
   color: #64748b;
-  font-size: 14px;
+
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.resume-state {
-  padding: 40px;
-  text-align: center;
-  color: #64748b;
-}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
 
 .resume-error {
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
-  font-size: 13px;
-}
-
-.resume-dropzone {
-  padding: 40px 24px;
-  border: 2px dashed #d9dce5;
-  border-radius: 16px;
-  background: #fafbff;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-
-.resume-dropzone:hover,
-.resume-dropzone.active {
-  border-color: #6546ef;
-  background: #f5f3ff;
-}
-
-.resume-dropzone-icon {
-  font-size: 28px;
-  color: #6546ef;
-  margin-bottom: 10px;
-}
-
-.resume-dropzone h3 {
-  margin: 0 0 4px;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.resume-dropzone p {
-  margin: 0;
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-.resume-current-card {
-  margin-top: 20px;
-  padding: 18px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  background: #ffffff;
-  border: 1px solid #e4e8ef;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.045);
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  padding: 13px 16px;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 11px;
+
+  background: #fff5f5;
+
+  color: #dc2626;
+
+  font-size: 12px;
 }
 
-.resume-current-icon {
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
+
+/* =========================================================
+   UPLOAD AREA
+   ========================================================= */
+
+.resume-upload-area {
+  min-height: 340px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  border: 2px dashed #d9deea;
+
+  border-radius: 20px;
+
+  background: #ffffff;
+
+  text-align: center;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.resume-upload-area:hover,
+.resume-upload-area.drag-active {
+  border-color: #7655f5;
+
+  background: #fbfaff;
+
+  box-shadow:
+    0 12px 35px rgba(101, 70, 239, 0.06);
+}
+
+.resume-upload-area.uploading {
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   UPLOAD ICON
+   ========================================================= */
+
+.resume-upload-icon {
+  width: 70px;
+  height: 70px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: #fee2e2;
-  color: #dc2626;
+
+  margin-bottom: 18px;
+
+  border-radius: 20px;
+
+  background: #f0edff;
+
+  color: #6546ef;
+
+  font-size: 28px;
+}
+
+.resume-upload-area h2 {
+  margin: 0;
+
+  color: #111827;
+
   font-size: 20px;
+  font-weight: 750;
 }
 
-.resume-current-info {
-  flex: 1;
-  min-width: 0;
+.resume-upload-description {
+  margin: 8px 0 18px;
+
+  color: #7c8aa5;
+
+  font-size: 13px;
 }
 
-.resume-current-info h4 {
-  margin: 0 0 3px;
-  font-size: 14px;
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.choose-file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  min-width: 145px;
+
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #6546ef,
+    #7c3aed
+  );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
   font-weight: 700;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(101, 70, 239, 0.2);
+
+  transition: all 0.2s ease;
 }
 
-.resume-current-info p {
-  margin: 0 0 6px;
-  font-size: 11px;
-  color: #94a3b8;
+.choose-file-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(101, 70, 239, 0.28);
 }
+
+.choose-file-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resume-drag-text {
+  margin: 13px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   CURRENT RESUME
+   ========================================================= */
+
+.resume-current-wrapper {
+  margin-top: 28px;
+}
+
+.resume-current-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+}
+
+.resume-current-heading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.resume-current-heading p {
+  margin: 4px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
 
 .resume-status {
-  display: inline-block;
-  padding: 3px 9px;
+  display: inline-flex;
+
+  padding: 6px 11px;
+
   border-radius: 999px;
+
   font-size: 10px;
   font-weight: 700;
 }
 
 .resume-status.pending-analysis {
-  background: #fef3c7;
+  background: #fff7d6;
   color: #b45309;
 }
 
@@ -153,53 +352,554 @@
   color: #dc2626;
 }
 
-.resume-current-actions {
+
+/* =========================================================
+   FILE CARD
+   ========================================================= */
+
+.resume-file-card {
   display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 18px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3e7ef;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.04);
+}
+
+
+/* =========================================================
+   FILE ICON
+   ========================================================= */
+
+.resume-file-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  font-size: 22px;
+}
+
+.resume-file-icon.pdf {
+  background: #fff0f0;
+  color: #ef4444;
+}
+
+.resume-file-icon.word {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+
+/* =========================================================
+   FILE INFO
+   ========================================================= */
+
+.resume-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-file-info h3 {
+  margin: 0 0 5px;
+
+  color: #111827;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.resume-file-info p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.resume-file-actions {
+  display: flex;
+  align-items: center;
   gap: 8px;
+
   flex-shrink: 0;
 }
 
 .resume-action-btn {
-  height: 34px;
+  height: 35px;
+
   padding: 0 12px;
+
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: 1px solid #d9dce5;
-  border-radius: 8px;
+  justify-content: center;
+
+  gap: 7px;
+
+  border: 1px solid #dfe4ed;
+
+  border-radius: 9px;
+
   background: #ffffff;
-  color: #6546ef;
+
+  color: #475569;
+
+  font-family: inherit;
+
   font-size: 11px;
   font-weight: 700;
+
   text-decoration: none;
+
   cursor: pointer;
+
+  transition: all 0.2s ease;
 }
 
 .resume-action-btn:hover {
-  background: #f3f0ff;
+  background: #f7f5ff;
+
+  border-color: #cfc7ff;
+
+  color: #6546ef;
 }
 
-.resume-action-btn.danger {
-  border-color: #fecaca;
+.resume-action-btn.view {
+  color: #6546ef;
+}
+
+.resume-action-btn.delete {
   color: #ef4444;
+
+  border-color: #fecaca;
 }
 
-.resume-action-btn.danger:hover {
-  background: #fee2e2;
+.resume-action-btn.delete:hover {
+  background: #fff1f2;
+
+  border-color: #fca5a5;
+
+  color: #dc2626;
 }
 
-@media (max-width: 600px) {
-  .resume-current-card {
-    flex-direction: column;
+.resume-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   SECURITY
+   ========================================================= */
+
+.resume-security {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 25px;
+
+  padding: 16px 18px;
+
+  border: 1px solid #e4ddff;
+
+  border-radius: 14px;
+
+  background: #faf9ff;
+}
+
+.resume-security-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background: #eeeaff;
+
+  color: #6546ef;
+
+  font-size: 14px;
+}
+
+.resume-security h3 {
+  margin: 0 0 3px;
+
+  color: #334155;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.resume-security p {
+  margin: 0;
+
+  color: #7c8aa5;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.resume-loading {
+  min-height: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #64748b;
+}
+
+.resume-loading-spinner {
+  width: 30px;
+  height: 30px;
+
+  border: 3px solid #e9e5ff;
+
+  border-top-color: #6546ef;
+
+  border-radius: 50%;
+
+  animation: resume-spin 0.8s linear infinite;
+}
+
+.resume-loading p {
+  margin-top: 12px;
+
+  font-size: 13px;
+}
+
+@keyframes resume-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .resume-page {
+    padding: 30px 25px 50px;
+  }
+}
+
+@media (max-width: 700px) {
+  .resume-page {
+    padding: 25px 18px 40px;
+  }
+
+  .resume-file-card {
+    flex-wrap: wrap;
     align-items: flex-start;
   }
 
-  .resume-current-actions {
+  .resume-file-actions {
     width: 100%;
   }
 
   .resume-action-btn {
     flex: 1;
-    justify-content: center;
   }
+}
+
+@media (max-width: 600px) {
+  .candidate-resume-layout {
+    display: block;
+  }
+
+  .resume-page {
+    width: 100%;
+  }
+
+  .resume-header h1 {
+    font-size: 26px;
+  }
+
+  .resume-upload-area {
+    min-height: 290px;
+    padding: 30px 18px;
+  }
+}
+
+/* =========================================================
+   RESUME PREVIEW
+   Does not affect the existing Resume page interface
+   ========================================================= */
+
+.resume-preview-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(15, 23, 42, 0.65);
+
+  backdrop-filter: blur(5px);
+}
+
+
+.resume-preview-modal {
+  width: min(1100px, 100%);
+  height: min(90vh, 850px);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #f1f5f9;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 30px 80px rgba(15, 23, 42, 0.3);
+}
+
+
+.resume-preview-header {
+  min-height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+
+.resume-preview-header h2 {
+  max-width: 700px;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  color: #111827;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+
+.resume-preview-header span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+}
+
+
+.resume-preview-close {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 9px;
+
+  background: #f8fafc;
+
+  color: #475569;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.resume-preview-close:hover {
+  background: #fee2e2;
+
+  color: #ef4444;
+}
+
+
+.resume-preview-body {
+  flex: 1;
+
+  overflow: auto;
+
+  padding: 25px;
+
+  background: #f1f5f9;
+}
+
+
+/* =========================================================
+   PDF
+   ========================================================= */
+
+.resume-pdf-frame {
+  width: 100%;
+  height: 100%;
+
+  min-height: 700px;
+
+  display: block;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   DOCX
+   ========================================================= */
+
+.resume-docx-container {
+  width: 100%;
+}
+
+
+.resume-docx-container .docx-wrapper {
+  width: 100% !important;
+
+  padding: 0 !important;
+
+  background: transparent !important;
+}
+
+
+.resume-docx-container section.docx {
+  margin: 0 auto 25px auto !important;
+
+  background: #ffffff !important;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.12);
+}
+
+
+/* =========================================================
+   PREVIEW STATES
+   ========================================================= */
+
+.resume-preview-loading {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #64748b;
+}
+
+
+.resume-preview-loading p {
+  margin-top: 12px;
+
+  font-size: 13px;
+}
+
+
+.resume-preview-error {
+  padding: 20px;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 10px;
+
+  background: #fff5f5;
+
+  color: #dc2626;
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .resume-preview-overlay {
+    padding: 10px;
+  }
+
+  .resume-preview-modal {
+    height: 94vh;
+
+    border-radius: 12px;
+  }
+
+  .resume-preview-body {
+    padding: 12px;
+  }
+
+  .resume-preview-header h2 {
+    max-width: 260px;
+  }
+
 }

@@ -20,6 +20,22 @@ const interviewCategorySchema = new mongoose.Schema(
       default: "",
     },
 
+    // Determines which section of the admin Questions page this
+    // category's questions belong to, and which question-shape the
+    // Add/Edit forms use for it:
+    //   Q&A     — expectedAnswer / evaluationCriteria (interview-style)
+    //   Coding  — reserved for the separate Coding-problems system
+    //   MCQ     — options / correctAnswer
+    // Existing categories created before this field existed have no
+    // stored value, so they default to "Q&A" — the accurate label for
+    // what their questions actually contain (expectedAnswer-based),
+    // not "Coding" as originally assumed.
+    type: {
+      type: String,
+      enum: ["Q&A", "Coding", "MCQ"],
+      default: "Q&A",
+    },
+
     difficulty: {
       type: String,
       enum: ["Beginner", "Intermediate", "Advanced"],

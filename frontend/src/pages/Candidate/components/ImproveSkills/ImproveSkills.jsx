@@ -1,33 +1,69 @@
-import { FaChevronRight } from "react-icons/fa";
-import {
-  FaCode,
-  FaUserTie,
-  FaComments,
-  FaDatabase,
-} from "react-icons/fa";
+import { FaChevronRight, FaLightbulb } from "react-icons/fa";
 
 import "./ImproveSkills.css";
 
-const suggestions = [
-  {
-    icon: <FaCode />,
-    title: "Improve Data Structures & Algorithms",
-  },
-  {
-    icon: <FaUserTie />,
-    title: "Practice Behavioral Questions",
-  },
-  {
-    icon: <FaComments />,
-    title: "Enhance Communication Skills",
-  },
-  {
-    icon: <FaDatabase />,
-    title: "Review DBMS & SQL Concepts",
-  },
-];
+const ImproveSkills = ({
+  attempts = [],
+}) => {
 
-const ImproveSkills = () => {
+  const recentEvaluated = attempts
+    .filter(
+      (attempt) =>
+        attempt.status === "Evaluated" &&
+        Array.isArray(
+          attempt.improvements
+        )
+    )
+    .sort(
+      (a, b) =>
+        new Date(
+          b.submittedAt ||
+          b.createdAt
+        ) -
+        new Date(
+          a.submittedAt ||
+          a.createdAt
+        )
+    )
+    .slice(0, 3);
+
+  const seen = new Set();
+  const suggestions = [];
+
+  recentEvaluated.forEach(
+    (attempt) => {
+
+      attempt.improvements.forEach(
+        (improvement) => {
+
+          if (
+            typeof improvement !==
+            "string"
+          ) {
+            return;
+          }
+
+          const text =
+            improvement.trim();
+
+          if (!text) {
+            return;
+          }
+
+          const key =
+            text.toLowerCase();
+
+          if (!seen.has(key)) {
+            seen.add(key);
+            suggestions.push(text);
+          }
+
+        }
+      );
+
+    }
+  );
+
   return (
     <section className="improve-card">
 
@@ -40,40 +76,58 @@ const ImproveSkills = () => {
       </h2>
 
       <p className="improve-subtitle">
-        Personalized suggestions generated from your
-        recent interview performance.
+        Personalized suggestions generated
+        from your recent AI-evaluated
+        interviews.
       </p>
 
       <div className="improve-list">
 
-        {suggestions.map((item, index) => (
+        {suggestions.length === 0 ? (
 
-          <div
-            className="improve-item"
-            key={index}
+          <p
+            style={{
+              color: "#9ca3af",
+              fontSize: 14,
+            }}
           >
+            Complete an AI-evaluated interview
+            to get personalized suggestions
+            here.
+          </p>
 
-            <div className="improve-left">
+        ) : (
 
-              <div className="improve-icon">
+          suggestions
+            .slice(0, 4)
+            .map((tip, index) => (
 
-                {item.icon}
+              <div
+                className="improve-item"
+                key={index}
+              >
+
+                <div className="improve-left">
+
+                  <div className="improve-icon">
+                    <FaLightbulb />
+                  </div>
+
+                  <span>
+                    {tip}
+                  </span>
+
+                </div>
+
+                <FaChevronRight
+                  className="improve-arrow"
+                />
 
               </div>
 
-              <span>
+            ))
 
-                {item.title}
-
-              </span>
-
-            </div>
-
-            <FaChevronRight className="improve-arrow" />
-
-          </div>
-
-        ))}
+        )}
 
       </div>
 

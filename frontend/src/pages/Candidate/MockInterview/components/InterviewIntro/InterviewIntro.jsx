@@ -1,91 +1,180 @@
 import "./InterviewIntro.css";
 
-const InterviewIntro = ({
-  interview,
-  onStart,
-}) => {
+const InterviewIntro = ({ interview, onStart }) => {
   if (!interview) return null;
+
+  const questionCount = interview.questions?.length || 0;
 
   return (
     <div className="intro-page">
-
       <div className="intro-card">
 
-        <div className="intro-top">
-
+        {/* Header */}
+        <div className="intro-header">
           <span className="intro-badge">
+            <span className="badge-star">✦</span>
             AI Mock Interview
           </span>
 
           <h1>{interview.title}</h1>
 
-          <p>{interview.description}</p>
-
+          <p>
+            {interview.description ||
+              "Get ready for your AI-powered mock interview."}
+          </p>
         </div>
 
+        {/* Interview Information */}
         <div className="intro-stats">
 
           <div className="intro-stat">
-            <h4>Category</h4>
-            <span>
-              {interview.category?.name}
-            </span>
+            <div className="stat-icon">⌘</div>
+            <div className="stat-info">
+              <span>Category</span>
+              <strong>
+                {interview.category?.name || "General"}
+              </strong>
+            </div>
           </div>
 
           <div className="intro-stat">
-            <h4>Difficulty</h4>
-            <span>
-              {interview.difficulty}
-            </span>
+            <div className="stat-icon">⌁</div>
+            <div className="stat-info">
+              <span>Interview Type</span>
+              <strong>
+                {interview.interviewType || "Technical"}
+              </strong>
+            </div>
           </div>
 
           <div className="intro-stat">
-            <h4>Duration</h4>
-            <span>
-              {interview.duration} Minutes
-            </span>
+            <div className="stat-icon">▥</div>
+            <div className="stat-info">
+              <span>Difficulty</span>
+              <strong>
+                {interview.difficulty || "Beginner"}
+              </strong>
+            </div>
           </div>
 
           <div className="intro-stat">
-            <h4>Questions</h4>
-            <span>
-              {interview.questions?.length || 0}
-            </span>
+            <div className="stat-icon">◷</div>
+            <div className="stat-info">
+              <span>Duration</span>
+              <strong>
+                {interview.duration || 0} Minutes
+              </strong>
+            </div>
+          </div>
+
+          <div className="intro-stat">
+            <div className="stat-icon">☷</div>
+            <div className="stat-info">
+              <span>Questions</span>
+              <strong>{questionCount}</strong>
+            </div>
           </div>
 
         </div>
 
-        <div className="instruction-box">
+        {/* Instructions */}
+        <section className="instruction-box">
 
-          <h2>Instructions</h2>
+          <div className="instruction-header">
 
-          <ul>
+            <div className="instruction-main-icon">
+              ✦
+            </div>
 
-            <li>
-              Read every question carefully.
-            </li>
+            <div>
+              <h2>Before You Begin</h2>
+              <p>
+                Please read the following instructions carefully.
+              </p>
+            </div>
 
-            <li>
-              Complete the interview before the timer ends.
-            </li>
+          </div>
 
-            <li>
-              Do not refresh the page.
-            </li>
+          <div className="instruction-divider"></div>
 
-            <li>
-              Your answers will be evaluated by AI.
-            </li>
+          <div className="instruction-grid">
 
-          </ul>
+            <div className="instruction-item">
+              <div className="instruction-number">01</div>
 
+              <div>
+                <h3>Read every question carefully</h3>
+                <p>
+                  Take a moment to understand each question
+                  before answering.
+                </p>
+              </div>
+            </div>
+
+            <div className="instruction-item">
+              <div className="instruction-number">02</div>
+
+              <div>
+                <h3>Complete within the time limit</h3>
+                <p>
+                  Make sure you complete the interview before
+                  the timer ends.
+                </p>
+              </div>
+            </div>
+
+            <div className="instruction-item">
+              <div className="instruction-number">03</div>
+
+              <div>
+                <h3>Do not refresh the page</h3>
+                <p>
+                  Refreshing or leaving the page may interrupt
+                  your interview.
+                </p>
+              </div>
+            </div>
+
+            <div className="instruction-item">
+              <div className="instruction-number">04</div>
+
+              <div>
+                <h3>Your answers are AI evaluated</h3>
+                <p>
+                  Your responses will be analyzed and evaluated
+                  by AI.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* Timer Notice */}
+        <div className="intro-notice">
+          <div className="notice-icon">i</div>
+
+          <div className="notice-content">
+            <p>
+              Once you start the interview, the timer will begin
+              automatically.
+            </p>
+
+            <strong>
+              Make sure you are ready before proceeding.
+            </strong>
+          </div>
         </div>
 
+        {/* Start */}
         <button
+          type="button"
           className="start-interview-btn"
           onClick={onStart}
         >
-          Start Interview
+          <span>Start Interview</span>
+          <span className="start-arrow">→</span>
         </button>
 
       </div>

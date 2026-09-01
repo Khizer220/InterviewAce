@@ -81,3 +81,35 @@ export const saveAIQuestions = async (
 
   return response.data;
 };
+
+
+// ==========================================
+// GENERATE AI MCQ QUESTIONS (preview only, not saved yet)
+// ==========================================
+export const generateMCQQuestions = async (payload) => {
+  const response = await api.post(
+    "/ai/generate-mcq",
+    payload
+  );
+
+  return response.data;
+};
+
+
+// ==========================================
+// SAVE AI GENERATED MCQ QUESTIONS
+// ==========================================
+export const saveAIMCQQuestions = async (
+  category,
+  questions
+) => {
+  const response = await api.post(
+    "/questions/save-ai-mcq",
+    {
+      category,
+      questions,
+    }
+  );
+
+  return response.data;
+};

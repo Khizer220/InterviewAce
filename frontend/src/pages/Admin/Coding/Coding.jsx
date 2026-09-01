@@ -1873,6 +1873,43 @@ const handleEditProblem = async (problemId) => {
       </div>
 
 
+      {/* STATUS */}
+
+      <div className="coding-modal-field">
+
+        <label>
+          Status
+        </label>
+
+        <select
+          value={
+            selectedProblem.status || "Draft"
+          }
+          onChange={(e) =>
+            setSelectedProblem({
+              ...selectedProblem,
+              status: e.target.value,
+            })
+          }
+        >
+
+          <option value="Draft">
+            Draft
+          </option>
+
+          <option value="Published">
+            Published
+          </option>
+
+          <option value="Archived">
+            Archived
+          </option>
+
+        </select>
+
+      </div>
+
+
       <div className="coding-modal-field">
 
         <label>
@@ -2092,6 +2129,9 @@ const handleEditProblem = async (problemId) => {
 
                               difficulty:
                                 selectedProblem.difficulty,
+
+                              status:
+                                selectedProblem.status || "Draft",
 
                               inputFormat:
                                 selectedProblem.inputFormat,

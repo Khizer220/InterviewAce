@@ -1,7 +1,7 @@
 import { FaArrowRight, FaPlay } from "react-icons/fa";
 import { motion } from "framer-motion";
-import Button from "../../components/ui/Button";
-import DashboardPreview from "../../components/ui/DashboardPreview";
+import Button from "../../../components/ui/Button";
+import DashboardPreview from "../../../components/ui/DashboardPreview";
 import "./Hero.css";
 
 const Hero = () => {

@@ -16,6 +16,9 @@ const questionRoutes = require("./routes/questionRoutes");
 const interviewTemplateRoutes = require("./routes/interviewTemplateRoutes");
 const aiRoutes = require("./routes/aiRoutes");
 const codingRoutes = require("./routes/codingRoutes");
+const codingPracticeRoutes = require("./routes/codingPracticeRoutes");
+const resumeRoutes = require("./routes/resumeRoutes");
+
 // ======================================
 // Connect Database
 // ======================================
@@ -33,6 +36,13 @@ app.use(cors());
 app.use(express.json());
 
 // ======================================
+// Static Files
+// Resume files
+// ======================================
+
+app.use("/uploads", express.static("uploads"));
+
+// ======================================
 // Routes
 // ======================================
 
@@ -40,31 +50,22 @@ app.use("/api/auth", authRoutes);
 
 app.use("/api/admin", adminRoutes);
 
-app.use(
-  "/api/categories",
-  interviewCategoryRoutes
-);
+app.use("/api/categories", interviewCategoryRoutes);
 
-app.use(
-  "/api/questions",
-  questionRoutes
-);
+app.use("/api/questions", questionRoutes);
 
-app.use(
-  "/api/interview-templates",
-  interviewTemplateRoutes
-);
+app.use("/api/interview-templates", interviewTemplateRoutes);
 
-app.use(
-  "/api/ai",
-  aiRoutes
-);
+app.use("/api/ai", aiRoutes);
 
-app.use(
-  "/api/interview-attempts",
-  interviewAttemptRoutes
-);
+app.use("/api/interview-attempts", interviewAttemptRoutes);
+
 app.use("/api/coding", codingRoutes);
+
+app.use("/api/coding-practice", codingPracticeRoutes);
+
+// Resume routes
+app.use("/api/resumes", resumeRoutes);
 
 // ======================================
 // Root Route

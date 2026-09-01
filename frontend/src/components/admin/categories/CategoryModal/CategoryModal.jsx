@@ -10,6 +10,7 @@ const CategoryModal = ({
     name: "",
     description: "",
     icon: "",
+    type: "Q&A",
     difficulty: "Beginner",
     duration: 30,
     totalQuestions: 10,
@@ -23,6 +24,7 @@ const CategoryModal = ({
         name: category.name || "",
         description: category.description || "",
         icon: category.icon || "",
+        type: category.type || "Q&A",
         difficulty: category.difficulty || "Beginner",
         duration: category.duration || 30,
         totalQuestions: category.totalQuestions || 10,
@@ -32,6 +34,7 @@ const CategoryModal = ({
         name: "",
         description: "",
         icon: "",
+        type: "Q&A",
         difficulty: "Beginner",
         duration: 30,
         totalQuestions: 10,
@@ -105,6 +108,34 @@ const CategoryModal = ({
               onChange={handleChange}
               required
             />
+          </div>
+
+          {/* TYPE — determines which section of the Questions page
+              this category (and its questions) belongs to, and which
+              Add/Edit question form is used for it. */}
+
+          <div className={styles.field}>
+            <label>
+              Question Type
+            </label>
+
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+            >
+              <option value="Q&A">
+                Q&A (interview-style questions)
+              </option>
+
+              <option value="Coding">
+                Coding (coding-problem categories)
+              </option>
+
+              <option value="MCQ">
+                MCQ (multiple choice)
+              </option>
+            </select>
           </div>
 
           {/* DESCRIPTION */}

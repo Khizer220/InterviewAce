@@ -1,0 +1,799 @@
+/* =========================================================
+   ALL INTERVIEWS PAGE
+========================================================= */
+
+.candidate-layout {
+  min-height: 100vh;
+  display: flex;
+  background: #f8f9fd;
+}
+
+.all-interviews-page {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  background: #f8f9fd;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.candidate-topbar {
+  height: 74px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-bottom: 1px solid #e8ebf2;
+
+  box-sizing: border-box;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-menu {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  background: transparent;
+
+  color: #17213b;
+  font-size: 19px;
+
+  cursor: pointer;
+}
+
+.topbar-search {
+  width: 350px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  padding: 0 13px;
+
+  background: #f3f5fc;
+  border-radius: 9px;
+
+  box-sizing: border-box;
+}
+
+.topbar-search span {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.topbar-search input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #17213b;
+
+  font-size: 11px;
+  font-family: inherit;
+}
+
+.topbar-search input::placeholder {
+  color: #8b96a9;
+}
+
+
+/* =========================================================
+   TOP RIGHT
+========================================================= */
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.notification-btn {
+  position: relative;
+
+  width: 35px;
+  height: 35px;
+
+  border: none;
+  background: transparent;
+
+  color: #17213b;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.notification-count {
+  position: absolute;
+
+  top: -2px;
+  right: -2px;
+
+  width: 16px;
+  height: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #6845e8;
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.topbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.profile-avatar {
+  width: 37px;
+  height: 37px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #eef1f7;
+
+  font-size: 17px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-name {
+  color: #17213b;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.profile-role {
+  color: #718096;
+
+  font-size: 9px;
+}
+
+.profile-arrow {
+  margin-left: 10px;
+
+  color: #17213b;
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   CONTENT AREA
+========================================================= */
+
+.all-interviews-content {
+  padding: 30px 32px 50px;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.all-interviews-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 22px;
+}
+
+.all-interviews-header h1 {
+  margin: 0;
+
+  color: #17213b;
+
+  font-size: 27px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.6px;
+}
+
+.all-interviews-header p {
+  margin: 6px 0 0;
+
+  color: #66738b;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.interview-count {
+  padding: 8px 15px;
+
+  border-radius: 999px;
+
+  background: #f0ebff;
+
+  color: #6545e8;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
+.candidate-filter-bar {
+  width: 100%;
+  min-height: 67px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px;
+
+  margin-bottom: 20px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e9f1;
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 5px 20px rgba(31, 41, 55, 0.035);
+}
+
+.search-box {
+  flex: 1;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 13px;
+
+  border: 1px solid #e0e5ee;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+}
+
+.search-icon {
+  color: #61718b;
+  font-size: 15px;
+}
+
+.search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #25314a;
+
+  font-family: inherit;
+  font-size: 10px;
+}
+
+.search-box input::placeholder {
+  color: #98a2b3;
+}
+
+.candidate-filter-bar select {
+  width: 145px;
+  height: 43px;
+
+  padding: 0 12px;
+
+  border: 1px solid #e0e5ee;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #26324b;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.filter-icon-btn {
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #e0e5ee;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #3f4d66;
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   INTERVIEW GRID
+========================================================= */
+
+.candidate-interview-grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 38px;
+}
+
+
+/* =========================================================
+   INTERVIEW CARD
+========================================================= */
+
+.candidate-interview-card {
+  width: 100%;
+  height: 280px;
+
+  padding: 17px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e7ef;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 6px 20px rgba(30, 41, 59, 0.045);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.candidate-interview-card:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 27px rgba(30, 41, 59, 0.08);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.candidate-card-header {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.candidate-card-title {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+.candidate-tech-icon {
+  width: 47px;
+  height: 47px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #f5f7fa;
+}
+
+.candidate-tech-icon img {
+  width: 32px;
+  height: 32px;
+
+  object-fit: contain;
+}
+
+.candidate-card-title h3 {
+  margin: 0 0 3px;
+
+  color: #18223a;
+
+  font-size: 15px;
+  line-height: 1.25;
+
+  font-weight: 800;
+
+  letter-spacing: -0.2px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.candidate-card-title p {
+  margin: 0;
+
+  color: #6b7890;
+
+  font-size: 10px;
+}
+
+.active-badge {
+  flex-shrink: 0;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  background: #dcfce9;
+
+  color: #16a34a;
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CARD TAGS
+========================================================= */
+
+.candidate-interview-tags {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 12px;
+}
+
+.candidate-interview-tags span {
+  padding: 5px 9px;
+
+  border-radius: 7px;
+
+  background: #f3f5f8;
+
+  color: #34415b;
+
+  font-size: 9px;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.candidate-interview-description {
+  height: 34px;
+
+  margin: 12px 0 0;
+
+  color: #66738b;
+
+  font-size: 10px;
+
+  line-height: 1.55;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CARD BOTTOM META
+========================================================= */
+
+.candidate-interview-meta {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: auto;
+
+  padding-top: 11px;
+
+  border-top: 1px solid #edf0f4;
+
+  color: #68758c;
+
+  font-size: 9px;
+}
+
+.candidate-interview-meta strong {
+  margin-right: 4px;
+
+  color: #25314a;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   START INTERVIEW
+========================================================= */
+
+.start-interview-btn {
+  width: 100%;
+  height: 37px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 10px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6243e8,
+      #7839ed
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 15px rgba(100, 67, 232, 0.23);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.start-interview-btn span {
+  font-size: 15px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+.start-interview-btn:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 9px 20px rgba(100, 67, 232, 0.3);
+}
+
+.start-interview-btn:hover span {
+  transform: translateX(3px);
+}
+
+.start-interview-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   STATES
+========================================================= */
+
+.interviews-state {
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e9f0;
+
+  border-radius: 16px;
+
+  text-align: center;
+}
+
+.interviews-state h3 {
+  margin: 0;
+
+  color: #1e293b;
+
+  font-size: 16px;
+}
+
+.interviews-state p {
+  margin: 7px 0 0;
+
+  color: #718096;
+
+  font-size: 11px;
+}
+
+.interviews-state.error h3 {
+  color: #dc2626;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-spinner {
+  width: 28px;
+  height: 28px;
+
+  margin-bottom: 10px;
+
+  border: 3px solid #e8e5f8;
+
+  border-top-color: #6d5dfc;
+
+  border-radius: 50%;
+
+  animation: interviewSpin 0.8s linear infinite;
+}
+
+@keyframes interviewSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1250px) {
+  .candidate-interview-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .candidate-interview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .all-interviews-content {
+    padding: 25px 20px 40px;
+  }
+
+  .candidate-topbar {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .candidate-filter-bar {
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex-basis: 100%;
+  }
+
+  .candidate-filter-bar select {
+    flex: 1;
+  }
+
+  .filter-icon-btn {
+    display: none;
+  }
+
+  .topbar-search {
+    width: 240px;
+  }
+
+  .all-interviews-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .all-interviews-content {
+    padding: 20px 15px 35px;
+  }
+
+  .all-interviews-header h1 {
+    font-size: 24px;
+  }
+
+  .candidate-filter-bar select {
+    width: 100%;
+    flex-basis: 100%;
+  }
+
+  .topbar-search {
+    display: none;
+  }
+
+  .candidate-interview-card {
+    height: 258px;
+  }
+}

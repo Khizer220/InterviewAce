@@ -243,3 +243,35 @@ exports.duplicateInterviewTemplate = async (req, res) => {
     });
   }
 };
+
+// ======================================
+// Get Active Interviews for Candidates
+// ======================================
+exports.getCandidateInterviews = async (req, res) => {
+  try {
+    const interviews = await InterviewTemplate.find({
+      status: true,
+    })
+      .populate("category", "name icon description")
+      .select(
+        "title description category interviewType difficulty duration questions instructions status createdAt"
+      )
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      count: interviews.length,
+      interviews,
+    });
+  } catch (error) {
+    console.error(
+      "Error fetching candidate interviews:",
+      error
+    );
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
